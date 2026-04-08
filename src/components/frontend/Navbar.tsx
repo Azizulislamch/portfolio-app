@@ -28,10 +28,10 @@ const Navbar = () => {
 
     return (
         <nav
-            className={`fixed top-0 left-0 w-full z-100 transition-all duration-300 ${scrolled ? "bg-primary/95 shadow-lg py-4" : "bg-transparent py-6"
+            className={` px-4 md:px-0 fixed top-0 left-0 w-full z-100 transition-all duration-300 ${scrolled ? "bg-primary/95 shadow-lg py-4" : "bg-transparent py-6"
                 }`}
         >
-            <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+            <div className="max-w-7xl mx-auto flex items-center justify-between">
 
                 {/* LOGO */}
                 <Link href="/" className="text-3xl font-bold text-white z-110">
@@ -89,7 +89,7 @@ const Navbar = () => {
                         exit={{ opacity: 0, x: "100%" }}
                         transition={{ type: "spring", damping: 25, stiffness: 200 }}
 
-                        className="fixed inset-0 bg-primary h-screen w-full flex flex-col items-center justify-start pt-24 gap-6 md:hidden z-100"
+                        className="fixed inset-0 h-screen w-full flex flex-col items-center justify-start pt-24 gap-6 md:hidden z-100"
                     >
                         {navLinks.map((link, index) => (
                             <motion.div
@@ -104,7 +104,7 @@ const Navbar = () => {
                                         setActiveItem(link.label);
                                         setMenuOpen(false);
                                     }}
-                                    className={`text-2xl font-bold ${activeItem === link.label ? "text-red-600" : "text-white hover:text-red-600"
+                                    className={`text-2xl font-bold bg-gray-700 px-6 py-2 rounded-2xl ${activeItem === link.label ? "text-red-600" : "text-white hover:text-red-600"
                                         }`}
                                 >
                                     {link.label}
