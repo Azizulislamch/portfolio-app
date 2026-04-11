@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Typewriter } from "react-simple-typewriter";
 import { useState } from "react";
+import { motion } from "framer-motion"; 
 import Button from "../shared/Button"; 
 
 export default function Hero() {
@@ -78,18 +79,36 @@ export default function Hero() {
                         className="rounded-lg md:w-100 md:h-auto"
                     />
 
-                    {/* TOP CARD */}
-                    <div className="absolute top-2 right-2 md:top-5 md:right-0 bg-white text-black px-3 py-1 md:px-4 md:py-2 rounded-xl shadow-lg text-xs md:text-sm">
+                    <motion.div 
+                        className="absolute top-2 right-2 md:top-5 md:right-0 bg-white text-black px-3 py-1 md:px-4 md:py-2 rounded-xl shadow-lg text-xs md:text-sm"
+                        
+                        animate={{ y: [0, -15] }} 
+                        transition={{
+                            duration: 1,
+                            repeat: Infinity,
+                            repeatType: "reverse",
+                            ease: "easeInOut"
+                        }}
+                    >
                         🏅 Dedicated <br /> <span className="text-red-400 font-bold">Software Developer</span>
-                    </div>
+                    </motion.div>
 
-                    {/* BOTTOM CARD */}
-                    <div className="absolute bottom-2 left-2 md:bottom-5 md:-left-10 bg-white text-black px-4 py-2 md:px-6 md:py-4 rounded-xl shadow-lg text-center">
+                    <motion.div 
+                        className="absolute bottom-2 left-2 md:bottom-5 md:-left-10 bg-white text-black px-4 py-2 md:px-6 md:py-4 rounded-xl shadow-lg text-center"
+                        
+                        animate={{ y: [0, 15] }} 
+                        transition={{
+                            duration: 1,
+                            repeat: Infinity,
+                            repeatType: "reverse",
+                            ease: "easeInOut"
+                        }}
+                    >
                         <p className="text-xl md:text-3xl font-bold">100+</p>
                         <p className="text-xs md:text-sm text-red-500">
                             Happy Satisfied<br />Customers
                         </p>
-                    </div>
+                    </motion.div>
 
                 </div>
             </div>
