@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Typewriter } from "react-simple-typewriter";
 import { useState } from "react";
+import Button from "../shared/Button"; 
 
 export default function Hero() {
     const [active, setActive] = useState<"consult" | "freelance">("consult");
@@ -18,7 +19,7 @@ export default function Hero() {
                 {/* LEFT SIDE */}
                 <div className="text-white max-w-xl text-center md:text-left">
 
-                    <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold leading-tight">
+                    <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold leading-tight uppercase">
                         HELLO I AM
                     </h1>
 
@@ -44,28 +45,24 @@ export default function Hero() {
                         I build modern, responsive and scalable web applications.
                     </p>
 
-                    {/* BUTTONS */}
-                    <div className="mt-6 flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
+                    {/* BUTTONS AREA - Shared Button */}
+                    <div className="mt-8 flex flex-col sm:flex-row items-center gap-4">
 
-                        <button
+                        {/* Start Consulting Button */}
+                        <Button 
+                            className={active === "consult" ? "" : "bg-transparent border border-gray-500 text-gray-400 shadow-none"}
                             onClick={() => setActive("consult")}
-                            className={`w-full sm:w-auto px-6 py-3 rounded-full font-semibold transition-all duration-300 ${active === "consult"
-                                    ? "bg-red-500 text-white shadow-[0_0_15px_rgba(255,0,0,0.5)]"
-                                    : "border border-gray-500 text-gray-400 hover:bg-red-500 hover:text-white"
-                                }`}
                         >
                             Start Consulting
-                        </button>
+                        </Button>
 
-                        <button
+                        {/* Available for Freelance Button */}
+                        <Button 
+                            className={active === "freelance" ? "" : "bg-transparent border border-gray-500 text-gray-400 shadow-none"}
                             onClick={() => setActive("freelance")}
-                            className={`w-full sm:w-auto px-6 py-3 rounded-full font-semibold transition-all duration-300 ${active === "freelance"
-                                    ? "bg-red-500 text-white shadow-[0_0_15px_rgba(255,0,0,0.5)]"
-                                    : "border border-gray-500 text-gray-400 hover:bg-red-500 hover:text-white"
-                                }`}
                         >
                             Available for Freelance
-                        </button>
+                        </Button>
 
                     </div>
                 </div>
@@ -83,7 +80,7 @@ export default function Hero() {
 
                     {/* TOP CARD */}
                     <div className="absolute top-2 right-2 md:top-5 md:right-0 bg-white text-black px-3 py-1 md:px-4 md:py-2 rounded-xl shadow-lg text-xs md:text-sm">
-                        🏅 Dedicated <br /> Software Developer
+                        🏅 Dedicated <br /> <span className="text-red-400 font-bold">Software Developer</span>
                     </div>
 
                     {/* BOTTOM CARD */}
