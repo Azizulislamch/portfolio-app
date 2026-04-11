@@ -11,7 +11,7 @@ export default function Hero() {
         <section className="relative w-full min-h-screen flex items-center bg-[#0d0d0d] overflow-hidden">
 
             {/* Background Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black via-[#1a0000] to-black opacity-90" />
+            <div className="absolute inset-0 bg-linear-to-r from-black via-[#1a0000] to-black opacity-90" />
 
             <div className="container max-w-7xl mx-auto px-6 md:px-8 flex flex-col-reverse md:flex-row items-center justify-between relative z-10 gap-10">
 
@@ -78,7 +78,7 @@ export default function Hero() {
                         alt="profile"
                         width={300}
                         height={400}
-                        className="rounded-lg md:w-[400px] md:h-auto"
+                        className="rounded-lg md:w-100 md:h-auto"
                     />
 
                     {/* TOP CARD */}
