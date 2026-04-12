@@ -34,7 +34,9 @@ const Navbar = () => {
             <div className="max-w-7xl mx-auto flex items-center justify-between">
 
                 {/* LOGO */}
-                <Link href="/" className="text-3xl font-bold text-white z-110">
+                <Link href="/#home"
+                    onClick={() => setActiveItem('Home')}
+                    className="text-3xl font-bold text-white z-110">
                     Port<span className="text-red-600">folio.</span>
                 </Link>
 
@@ -55,7 +57,7 @@ const Navbar = () => {
                             </Link>
                         </li>
                     ))}
-                    
+
                     {/* <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -68,7 +70,7 @@ const Navbar = () => {
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        
+
                         className="relative group bg-red-600 text-white px-5 py-2 rounded-full flex items-center gap-2 text-lg font-bold shadow-lg shadow-red-600/20 overflow-hidden"
                     >
 

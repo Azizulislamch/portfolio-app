@@ -1,11 +1,13 @@
+import About from "../components/frontend/About";
 import Hero from "../components/frontend/Hero";
 import Navbar from "../components/frontend/Navbar";
 
 export default function Home() {
   return (
-    <main className="bg-primary min-h-screen flex items-center justify-center">
+    <main className="bg-primary min-h-screen flex flex-col w-full">
       <Navbar />
       <Hero />
+      <About />
     </main>
   );
 }

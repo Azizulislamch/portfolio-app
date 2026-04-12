@@ -10,7 +10,7 @@ export default function Hero() {
     const [active, setActive] = useState<"consult" | "freelance">("consult");
 
     return (
-        <section className="relative w-full min-h-screen flex items-center bg-[#0d0d0d] overflow-hidden">
+        <section id="home" className="relative w-full min-h-screen flex items-center bg-[#0d0d0d] overflow-hidden">
 
             {/* Background Gradient */}
             <div className="absolute inset-0 bg-linear-to-r from-black via-[#1a0000] to-black opacity-90" />
