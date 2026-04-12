@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
+import Button from '../shared/Button';
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -28,7 +29,7 @@ const Navbar = () => {
 
     return (
         <nav
-            className={` px-4 md:px-0 fixed top-0 left-0 w-full z-100 transition-all duration-300 ${scrolled ? "bg-primary/95 shadow-lg py-4" : "bg-transparent py-6"
+            className={` px-4 md:px-0 fixed top-0 left-0 w-full z-100 transition-all duration-300 ${scrolled ? "backdrop-blur-lg py-4" : "bg-transparent py-6"
                 }`}
         >
             <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -58,32 +59,9 @@ const Navbar = () => {
                         </li>
                     ))}
 
-                    {/* <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="bg-red-600 text-white px-5 py-2 rounded-full flex items-center gap-2 text-lg font-bold shadow-lg shadow-red-600/20"
-                    >
-                        <i className="fa-solid fa-download text-sm"></i>
+                    <Button icon="fa-solid fa-download">
                         Download CV
-                    </motion.button> */}
-
-                    <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-
-                        className="relative group bg-red-600 text-white px-5 py-2 rounded-full flex items-center gap-2 text-lg font-bold shadow-lg shadow-red-600/20 overflow-hidden"
-                    >
-
-                        {/* Shine Effect Layer */}
-                        <span
-                            className="absolute top-0 -left-full w-full h-full bg-white/40 -skew-x-25 transition-all duration-400 ease-in-out group-hover:left-full z-0"
-                        ></span>
-
-                        <span className="relative z-10 flex items-center gap-2">
-                            <i className="fa-solid fa-download text-sm"></i>
-                            Download CV
-                        </span>
-                    </motion.button>
+                    </Button>
 
                 </ul>
 

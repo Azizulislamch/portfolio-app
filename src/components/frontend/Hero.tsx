@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { Typewriter } from "react-simple-typewriter";
 import { useState } from "react";
-import { motion } from "framer-motion"; 
-import Button from "../shared/Button"; 
+import { motion } from "framer-motion";
+import Button from "../shared/Button";
 
 export default function Hero() {
     const [active, setActive] = useState<"consult" | "freelance">("consult");
@@ -50,7 +50,7 @@ export default function Hero() {
                     <div className="mt-8 flex flex-col sm:flex-row items-center gap-4">
 
                         {/* Start Consulting Button */}
-                        <Button 
+                        <Button
                             className={active === "consult" ? "" : "bg-transparent border border-gray-500 text-gray-400 shadow-none"}
                             onClick={() => setActive("consult")}
                         >
@@ -58,7 +58,7 @@ export default function Hero() {
                         </Button>
 
                         {/* Available for Freelance Button */}
-                        <Button 
+                        <Button
                             className={active === "freelance" ? "" : "bg-transparent border border-gray-500 text-gray-400 shadow-none"}
                             onClick={() => setActive("freelance")}
                         >
@@ -79,10 +79,10 @@ export default function Hero() {
                         className="rounded-lg md:w-100 md:h-auto"
                     />
 
-                    <motion.div 
+                    <motion.div
                         className="absolute top-2 right-2 md:top-5 md:right-0 bg-white text-black px-3 py-1 md:px-4 md:py-2 rounded-xl shadow-lg text-xs md:text-sm"
-                        
-                        animate={{ y: [0, -15] }} 
+
+                        animate={{ y: [0, -15] }}
                         transition={{
                             duration: 1,
                             repeat: Infinity,
@@ -93,10 +93,10 @@ export default function Hero() {
                         🏅 Dedicated <br /> <span className="text-red-400 font-bold">Software Developer</span>
                     </motion.div>
 
-                    <motion.div 
+                    <motion.div
                         className="absolute bottom-2 left-2 md:bottom-5 md:-left-10 bg-white text-black px-4 py-2 md:px-6 md:py-4 rounded-xl shadow-lg text-center"
-                        
-                        animate={{ y: [0, 15] }} 
+
+                        animate={{ y: [0, 15] }}
                         transition={{
                             duration: 1,
                             repeat: Infinity,
