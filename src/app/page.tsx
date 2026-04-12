@@ -1,10 +1,41 @@
 import About from "../components/frontend/About";
 import Hero from "../components/frontend/Hero";
 import Navbar from "../components/frontend/Navbar";
+import Projects from "../components/frontend/Projects";
 import Services from "../components/frontend/Services";
 import Skills from "../components/frontend/Skills";
 
-export default function Home() {
+import { connectDB } from "../lib/db";
+import Project from "../models/Project";
+
+// const sampleProjects = [
+//   {
+//     _id: "1",
+//     title: "AIC Amal - Donation Platform",
+//     description: "A comprehensive donation platform for different kinds of financial support.",
+//     image: "/assets/projects/project1.png", // আপনার ইমেজ পাথ দিন
+//     tags: ["Next.js", "Tailwind", "MongoDB"],
+//     githubLink: "https://github.com/Azizulislamch/...",
+//     liveLink: "#"
+//   },
+//   {
+//     _id: "2",
+//     title: "AIC Amal - Donation Platform",
+//     description: "A comprehensive donation platform for different kinds of financial support.",
+//     image: "/assets/projects/project1.png", // আপনার ইমেজ পাথ দিন
+//     tags: ["Next.js", "Tailwind", "MongoDB"],
+//     githubLink: "https://github.com/Azizulislamch/...",
+//     liveLink: "#"
+//   }
+// ];
+
+export default async function Home() {
+  // ডাটাবেস কানেক্ট করা
+  await connectDB();
+
+  // ডাটাবেস থেকে প্রজেক্ট নিয়ে আসা
+  const projectsData = await Project.find().sort({ createdAt: -1 });
+  const projects = JSON.parse(JSON.stringify(projectsData));
   return (
     <main className="bg-primary min-h-screen flex flex-col w-full">
       <Navbar />
@@ -12,6 +43,7 @@ export default function Home() {
       <About />
       <Skills />
       <Services />
+      <Projects projects={projects} />
     </main>
   );
 }
