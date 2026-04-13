@@ -29,10 +29,10 @@ const About: React.FC = () => {
     const infoDetails: InfoDetail[] = [
         { label: "Name", value: "Azizul Islam" },
         { label: "Date of birth", value: "November 11, 2001" },
-        { label: "Address", value: "Dhaka, Bangladesh" },
+        { label: "Address", value: "Plot:1081, 1092 Khilbarirtek, Vatara, Dhaka 1212" },
         { label: "Zip code", value: "1212" },
         { label: "Email", value: "azizulislamch@gmail.com" },
-        { label: "Phone", value: "+880 1783 519763" },
+        { label: "Phone", value: "+880 1783-519763" },
         { label: "Language", value: "English, Bengali" },
         { label: "Freelance", value: "Available" },
     ];
