@@ -26,13 +26,24 @@ const Contact = () => {
                                 { icon: "fa-envelope", label: "Write Email", value: "azizulislamch@gmail.com" },
                                 { icon: "fa-map-marker-alt", label: "Location", value: "Plot:1081, 1092 Khilbarirtek, Vatara, Dhaka 1212" },
                             ].map((info, idx) => (
-                                <div key={idx} className="flex items-center gap-6 group">
-                                    <div className="w-16 h-16 bg-[#1a1a1a] border-l-4 border-red-500 flex items-center justify-center rounded-xl group-hover:bg-red-500 transition-all duration-300">
+                                <div key={idx} className="flex items-start sm:items-center gap-6 group">
+                                    <div className="shrink-0 w-16 h-16 bg-[#1a1a1a] border-l-4 border-red-500 flex items-center justify-center rounded-xl group-hover:bg-red-500 transition-all duration-300">
                                         <i className={`fas ${info.icon} text-red-500 group-hover:text-white text-xl`}></i>
                                     </div>
-                                    <div>
-                                        <p className="text-lg uppercase font-bold tracking-tighter text-white/50 mb-1">{info.label}</p>
-                                        <p className="text-2xl font-bold">{info.value}</p>
+                                    <div className="overflow-hidden">
+                                        <p className="text-sm uppercase font-bold tracking-tighter text-white/50 mb-1">{info.label}</p>
+
+                                        {info.icon === "fa-phone-alt" ? (
+                                            <a href={`tel:${info.value.replace(/\s+/g, '')}`} className="text-lg md:text-xl font-bold hover:text-red-500 transition-colors block">
+                                                {info.value}
+                                            </a>
+                                        ) : info.icon === "fa-envelope" ? (
+                                            <a href={`mailto:${info.value}`} className="text-lg md:text-xl font-bold hover:text-red-500 transition-colors block break-all">
+                                                {info.value}
+                                            </a>
+                                        ) : (
+                                            <p className="text-lg md:text-xl font-bold leading-tight">{info.value}</p>
+                                        )}
                                     </div>
                                 </div>
                             ))}
@@ -41,8 +52,8 @@ const Contact = () => {
 
                     {/* Right Side: Contact Form */}
                     <motion.div
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         className="bg-[#1a1a1a] p-8 md:p-12 rounded-[40px] border border-white/5"
                     >
                         <form className="space-y-6">
