@@ -116,9 +116,11 @@ const About: React.FC = () => {
 
                     {/* ACTION BUTTONS */}
                     <div className="flex items-center gap-6">
-                        <Button icon="fa-solid fa-download">
-                            Download CV
-                        </Button>
+                        <a href="/assets/Azizul Islam_CV.pdf" target="_blank" rel="noopener noreferrer">
+                            <Button icon="fa-solid fa-download">
+                                Download CV
+                            </Button>
+                        </a>
 
                         <Button
                             variant="iconOnly"

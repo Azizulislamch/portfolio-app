@@ -59,10 +59,11 @@ const Navbar = () => {
                             </Link>
                         </li>
                     ))}
-
-                    <Button icon="fa-solid fa-download">
-                        Download CV
-                    </Button>
+                    <a href="/assets/Azizul Islam_CV.pdf" target="_blank" rel="noopener noreferrer">
+                        <Button icon="fa-solid fa-download">
+                            Download CV
+                        </Button>
+                    </a>
 
                 </ul>
 
