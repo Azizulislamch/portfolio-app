@@ -64,8 +64,9 @@ const About: React.FC = () => {
                                     src={item.src}
                                     alt="About stats"
                                     fill
-
+                                    loading="eager"
                                     className="object-cover opacity-100"
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                 />
                             ) : (
                                 <div className="text-center px-4 relative z-10">

@@ -38,8 +38,8 @@ const Navbar = () => {
                 {/* LOGO */}
                 <Link href="/#home"
                     onClick={() => setActiveItem('Home')}
-                    className="text-3xl font-bold text-white z-110">
-                    Port<span className="text-red-600">folio.</span>
+                    className="text-3xl font-black text-white z-110">
+                    AZIZUL <span className="text-red-600">ISLAM</span>
                 </Link>
 
                 {/* DESKTOP MENU (Unchanged) */}

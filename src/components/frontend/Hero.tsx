@@ -76,6 +76,7 @@ export default function Hero() {
                         alt="profile"
                         width={300}
                         height={400}
+                        loading="eager"
                         className="rounded-lg md:w-100 md:h-auto"
                     />
 

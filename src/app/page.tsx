@@ -13,7 +13,7 @@ import Project from "../models/Project";
 //     _id: "1",
 //     title: "AIC Amal - Donation Platform",
 //     description: "A comprehensive donation platform for different kinds of financial support.",
-//     image: "/assets/projects/project1.png", // আপনার ইমেজ পাথ দিন
+//     image: "/assets/projects/project1.png",
 //     tags: ["Next.js", "Tailwind", "MongoDB"],
 //     githubLink: "https://github.com/Azizulislamch/...",
 //     liveLink: "#"
@@ -22,7 +22,7 @@ import Project from "../models/Project";
 //     _id: "2",
 //     title: "AIC Amal - Donation Platform",
 //     description: "A comprehensive donation platform for different kinds of financial support.",
-//     image: "/assets/projects/project1.png", // আপনার ইমেজ পাথ দিন
+//     image: "/assets/projects/project1.png",
 //     tags: ["Next.js", "Tailwind", "MongoDB"],
 //     githubLink: "https://github.com/Azizulislamch/...",
 //     liveLink: "#"
@@ -30,10 +30,10 @@ import Project from "../models/Project";
 // ];
 
 export default async function Home() {
-  // ডাটাবেস কানেক্ট করা
+  // Database Connection
   await connectDB();
 
-  // ডাটাবেস থেকে প্রজেক্ট নিয়ে আসা
+  // Show Project from DB
   const projectsData = await Project.find().sort({ createdAt: -1 });
   const projects = JSON.parse(JSON.stringify(projectsData));
   return (
