@@ -1,3 +1,4 @@
+import Blogs from "../components/frontend/Blogs";
 import About from "../components/frontend/About";
 import Hero from "../components/frontend/Hero";
 import Navbar from "../components/frontend/Navbar";
@@ -7,6 +8,7 @@ import Skills from "../components/frontend/Skills";
 
 import { connectDB } from "../lib/db";
 import Project from "../models/Project";
+import Blog from "../models/Blog";
 
 // const sampleProjects = [
 //   {
@@ -33,9 +35,13 @@ export default async function Home() {
   // Database Connection
   await connectDB();
 
-  // Show Project from DB
-  const projectsData = await Project.find().sort({ createdAt: -1 });
+  // Projects and Blogs Data fetch
+  const projectsData = await Project.find().sort({ createdAt: -1 }).lean();
+  const blogsData = await Blog.find().sort({ createdAt: -1 }).lean();
+
   const projects = JSON.parse(JSON.stringify(projectsData));
+  const blogs = JSON.parse(JSON.stringify(blogsData));
+
   return (
     <main className="bg-primary min-h-screen flex flex-col w-full">
       <Navbar />
@@ -44,6 +50,7 @@ export default async function Home() {
       <Skills />
       <Services />
       <Projects projects={projects} />
+      <Blogs blogs={blogs} />
     </main>
   );
 }
