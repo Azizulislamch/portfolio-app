@@ -10,7 +10,7 @@ export default function Hero() {
     const [active, setActive] = useState<"consult" | "freelance">("consult");
 
     return (
-        <section id="home" className="relative w-full min-h-screen flex items-center bg-[#0d0d0d] overflow-hidden">
+        <section id="home" className="relative w-full min-h-screen flex items-center bg-[#0d0d0d] overflow-hidden mt-4">
 
             {/* Background Gradient */}
             <div className="absolute inset-0 bg-linear-to-r from-black via-[#1a0000] to-black opacity-90" />
@@ -81,7 +81,7 @@ export default function Hero() {
                     />
 
                     <motion.div
-                        className="absolute top-2 right-2 md:top-5 md:right-0 bg-white text-black px-3 py-1 md:px-4 md:py-2 rounded-xl shadow-lg text-xs md:text-sm"
+                        className="absolute top-2 right-2 md:top-5 md:right-0 bg-white text-black px-3 py-1 md:px-4 md:py-2 rounded-xl shadow-lg text-xs md:text-sm mt-2"
 
                         animate={{ y: [0, -15] }}
                         transition={{
