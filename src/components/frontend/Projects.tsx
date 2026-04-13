@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Button from "../shared/Button";
 
 interface Project {
   _id: string;
@@ -24,7 +25,7 @@ const Projects = ({ projects }: { projects: Project[] }) => {
 
         <div className="space-y-24">
           {projects.map((project, index) => (
-            <motion.div 
+            <motion.div
               key={project._id}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -33,13 +34,14 @@ const Projects = ({ projects }: { projects: Project[] }) => {
               className={`flex flex-col ${index % 2 !== 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-12`}
             >
               {/* Image Side */}
-              <div className="w-full lg:w-1/2 bg-[#1a1a1a] p-4 rounded-[40px] border border-white/5 hover:border-red-500/30 transition-all duration-500">
-                <div className="relative aspect-4/3 w-full overflow-hidden rounded-[30px]">
-                  <Image 
-                    src={project.image} 
+              <div className="w-full lg:w-1/2 bg-[#1a1a1a] p-4 rounded-[40px] border border-white/5 hover:border-red-500/30 transition-all duration-500 group">
+                <div className="relative aspect-16/10 w-full overflow-hidden rounded-[30px] bg-[#0d0d0d]">
+                  <Image
+                    src={project.image}
                     alt={project.title}
                     fill
-                    className="object-cover transition-transform duration-700 hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-contain object-center transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
               </div>
@@ -50,8 +52,7 @@ const Projects = ({ projects }: { projects: Project[] }) => {
                 <p className="text-gray-400 text-lg leading-relaxed">
                   {project.description}
                 </p>
-                
-                {/* Tags */}
+
                 <div className="flex flex-wrap gap-3">
                   {project.tags.map(tag => (
                     <span key={tag} className="bg-[#1a1a1a] text-gray-400 px-4 py-2 rounded-full text-sm border border-white/5">
@@ -60,13 +61,21 @@ const Projects = ({ projects }: { projects: Project[] }) => {
                   ))}
                 </div>
 
-                <div className="pt-6">
-                  <a 
-                    href={project.liveLink}
+                {/* Buttons: Live Demo and Font Awesome GitHub */}
+                <div className="pt-6 flex flex-wrap gap-4">
+                  <a href={project.liveLink} target="_blank" rel="noopener noreferrer">
+                    <Button>Live Demo</Button>
+                  </a>
+
+                  <a
+                    href={project.githubLink}
                     target="_blank"
-                    className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-full font-bold transition-all shadow-lg shadow-red-600/20 inline-block"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-6 py-3 border border-white/10 hover:border-red-500/50 rounded-full transition-all bg-white/5 font-semibold text-sm hover:text-red-500"
                   >
-                    View Details
+                    {/* Font Awesome GitHub Icon */}
+                    <i className="fab fa-github text-lg"></i>
+                    GitHub Repo
                   </a>
                 </div>
               </div>

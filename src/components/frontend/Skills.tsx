@@ -37,7 +37,7 @@ const Skills: React.FC = () => {
   };
 
   return (
-    <section id="skills" className="bg-[#0d0d0d] py-24 px-6 md:px-12 lg:px-24 text-white overflow-hidden">
+    <section id="skills" className="bg-[#0d0d0d] py-16 md:py-24 px-6 md:px-12 lg:px-24 text-white overflow-hidden">
       <div className="max-w-7xl mx-auto">
         
         <motion.div
