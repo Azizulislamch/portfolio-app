@@ -7,8 +7,8 @@ import Services from "../components/frontend/Services";
 import Skills from "../components/frontend/Skills";
 
 import { connectDB } from "../lib/db";
-import Project from "../models/Project";
-import Blog from "../models/Blog";
+import { Project } from "@/models/Project";
+import { Blog } from "@/models/Blog";
 import Contact from "@/components/frontend/Contact";
 import Resume from "@/components/frontend/Resume";
 

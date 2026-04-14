@@ -9,5 +9,4 @@ const ProjectSchema = new Schema({
   liveLink: { type: String },
 }, { timestamps: true });
 
-const Project = models.Project || model("Project", ProjectSchema);
-export default Project;
+export const Project = models.Project || model("Project", ProjectSchema);

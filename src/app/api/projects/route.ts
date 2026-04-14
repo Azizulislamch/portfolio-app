@@ -1,5 +1,5 @@
 import { connectDB } from "@/lib/db"; 
-import Project from "@/models/Project"; 
+import { Project } from "@/models/Project"; 
 import { NextResponse } from "next/server";
 
 // GET Method

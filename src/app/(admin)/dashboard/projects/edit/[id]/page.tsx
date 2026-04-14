@@ -1,40 +1,81 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import Swal from "sweetalert2";
 
-export default function AddProject() {
+export default function EditProject() {
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
+  const params = useParams();
+  const id = params?.id;
+
+  const [loading, setLoading] = useState(true);
+  const [updating, setUpdating] = useState(false);
+  
   const [formData, setFormData] = useState({
     title: "",
     description: "",
     image: "",
     liveLink: "",
     githubLink: "",
-    technologies: "",
+    technologies: "", // এটি স্ট্রিং হিসেবে থাকবে
   });
+
+  useEffect(() => {
+    const fetchProject = async () => {
+      try {
+        const res = await fetch(`/api/projects/${id}`);
+        const data = await res.json();
+
+        if (res.ok) {
+          // ডাটা সেট করার সময় technologies চেক করা হচ্ছে
+          setFormData({
+            title: data.title || "",
+            description: data.description || "",
+            image: data.image || "",
+            liveLink: data.liveLink || "",
+            githubLink: data.githubLink || "",
+            // ডাটা যদি অ্যারে হয় তবেই join করবে, নাহলে যা আছে তাই দেখাবে
+            technologies: Array.isArray(data.technologies) 
+              ? data.technologies.join(", ") 
+              : (data.technologies || ""),
+          });
+        }
+      } catch (error) {
+        console.error("Failed to fetch project", error);
+        Swal.fire("Error", "Could not load project data", "error");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (id) fetchProject();
+  }, [id]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
+    setUpdating(true);
 
-    const techArray = formData.technologies.split(",").map((t) => t.trim());
-    const projectData = { ...formData, technologies: techArray };
+    // সেভ করার আগে স্ট্রিংকে আবার অ্যারেতে রূপান্তর
+    const techArray = formData.technologies
+      .split(",")
+      .map((t) => t.trim())
+      .filter((t) => t !== "");
+
+    const updatedData = { ...formData, technologies: techArray };
 
     try {
-      const res = await fetch("/api/projects", {
-        method: "POST",
+      const res = await fetch(`/api/projects/${id}`, {
+        method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(projectData),
+        body: JSON.stringify(updatedData),
       });
 
       if (res.ok) {
         Swal.fire({
-          title: "Success!",
-          text: "Project added to your portfolio.",
+          title: "Updated!",
+          text: "Project updated successfully.",
           icon: "success",
           background: "#111111",
           color: "#ffffff",
@@ -44,41 +85,43 @@ export default function AddProject() {
         router.refresh();
       }
     } catch (error) {
-        Swal.fire("Error", "Something went wrong", "error");
+      Swal.fire("Error", "Update failed", "error");
     } finally {
-      setLoading(false);
+      setUpdating(false);
     }
   };
 
+  if (loading) return <div className="h-screen flex items-center justify-center text-gray-500 animate-pulse">Loading...</div>;
+
   return (
-    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-4xl mx-auto">
+    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-4xl mx-auto py-10">
       <div className="mb-10">
         <h2 className="text-4xl font-black uppercase italic tracking-tighter">
-          Add New <span className="text-red-600">Project</span>
+          Edit <span className="text-red-600">Project</span>
         </h2>
-        <p className="text-gray-500 text-xs font-bold uppercase tracking-widest mt-2">Showcase your latest masterpiece</p>
       </div>
 
       <form onSubmit={handleSubmit} className="bg-[#111111] p-10 rounded-[40px] border border-white/5 space-y-8 shadow-2xl">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Title */}
           <div className="space-y-3">
             <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 ml-1">Project Title</label>
             <input
               required
               type="text"
-              placeholder="e.g. AI SaaS Platform"
               value={formData.title}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
               className="w-full bg-black/50 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-red-600 transition-all text-white font-bold"
             />
           </div>
 
+          {/* Tech Stack - এই ফিল্ডটি এখন ডাটা দেখাবে */}
           <div className="space-y-3">
             <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 ml-1">Tech Stack (Comma Separated)</label>
             <input
               required
               type="text"
-              placeholder="React, Next.js, Tailwind"
+              placeholder="e.g. React, Next.js, MongoDB"
               value={formData.technologies}
               onChange={(e) => setFormData({ ...formData, technologies: e.target.value })}
               className="w-full bg-black/50 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-red-600 transition-all text-white font-bold"
@@ -86,24 +129,24 @@ export default function AddProject() {
           </div>
         </div>
 
+        {/* Description */}
         <div className="space-y-3">
           <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 ml-1">Description</label>
           <textarea
             required
             rows={4}
-            placeholder="What does this project do?"
             value={formData.description}
             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
             className="w-full bg-black/50 border border-white/10 rounded-2xl px-6 py-6 focus:outline-none focus:border-red-600 transition-all text-white leading-relaxed resize-none"
           />
         </div>
 
+        {/* Image URL */}
         <div className="space-y-3">
           <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 ml-1">Thumbnail Image URL</label>
           <input
             required
             type="text"
-            placeholder="https://example.com/image.jpg"
             value={formData.image}
             onChange={(e) => setFormData({ ...formData, image: e.target.value })}
             className="w-full bg-black/50 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-red-600 transition-all text-white"
@@ -115,7 +158,6 @@ export default function AddProject() {
             <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 ml-1">Live Demo URL</label>
             <input
               type="url"
-              placeholder="https://..."
               value={formData.liveLink}
               onChange={(e) => setFormData({ ...formData, liveLink: e.target.value })}
               className="w-full bg-black/50 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-red-600 transition-all text-white"
@@ -126,7 +168,6 @@ export default function AddProject() {
             <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 ml-1">GitHub URL</label>
             <input
               type="url"
-              placeholder="https://github.com/..."
               value={formData.githubLink}
               onChange={(e) => setFormData({ ...formData, githubLink: e.target.value })}
               className="w-full bg-black/50 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-red-600 transition-all text-white"
@@ -134,13 +175,22 @@ export default function AddProject() {
           </div>
         </div>
 
-        <button
-          disabled={loading}
-          type="submit"
-          className="w-full bg-red-600 hover:bg-red-700 text-white font-black py-5 rounded-2xl transition-all uppercase tracking-[0.3em] text-xs shadow-[0_15px_30px_-10px_rgba(220,38,38,0.5)] disabled:opacity-50"
-        >
-          {loading ? "Uploading..." : "Publish Project"}
-        </button>
+        <div className="flex gap-4 pt-4">
+          <button
+            type="button"
+            onClick={() => router.back()}
+            className="flex-1 bg-white/5 hover:bg-white/10 text-gray-400 font-black py-5 rounded-2xl transition-all uppercase tracking-[0.3em] text-xs"
+          >
+            Cancel
+          </button>
+          <button
+            disabled={updating}
+            type="submit"
+            className="flex-2 bg-red-600 hover:bg-red-700 text-white font-black py-5 rounded-2xl transition-all uppercase tracking-[0.3em] text-xs shadow-[0_15px_30px_-10px_rgba(220,38,38,0.5)] disabled:opacity-50"
+          >
+            {updating ? "Updating..." : "Save Changes"}
+          </button>
+        </div>
       </form>
     </motion.div>
   );
