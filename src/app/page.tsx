@@ -10,6 +10,7 @@ import { connectDB } from "../lib/db";
 import Project from "../models/Project";
 import Blog from "../models/Blog";
 import Contact from "@/components/frontend/Contact";
+import Resume from "@/components/frontend/Resume";
 
 // const sampleProjects = [
 //   {
@@ -48,6 +49,7 @@ export default async function Home() {
       <Navbar />
       <Hero />
       <About />
+      <Resume />
       <Skills />
       <Services />
       <Projects projects={projects} />

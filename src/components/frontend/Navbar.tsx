@@ -91,7 +91,7 @@ const Navbar = () => {
     }, [navLinks, activeItem]);
 
     return (
-        <nav className={`px-4 md:px-0 fixed top-0 left-0 w-full z-100 transition-all duration-300 ${scrolled ? "backdrop-blur-lg bg-black/50 py-4 shadow-xl" : "backdrop-blur-lg py-6"
+        <nav className={`px-4 md:px-0 fixed top-0 left-0 w-full z-100 transition-all duration-300 ${scrolled ? "backdrop-blur-xl bg-black/50 py-4 shadow-xl" : "backdrop-blur-xl py-6"
             }`}>
             <div className="max-w-7xl mx-auto flex items-center justify-between relative">
 
