@@ -122,10 +122,12 @@ const About: React.FC = () => {
                             </Button>
                         </a>
 
-                        <Button
-                            variant="iconOnly"
-                            icon="fa-solid fa-arrow-up-right-from-square"
-                        />
+                        <a href="https://github.com/Azizulislamch" target="_blank" rel="noopener noreferrer">
+                            <Button>
+                                <i className="fab fa-github text-lg"></i>
+                                GitHub
+                            </Button>
+                        </a>
                     </div>
                 </motion.div>
             </div>

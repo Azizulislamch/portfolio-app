@@ -5,6 +5,7 @@ import { Typewriter } from "react-simple-typewriter";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Button from "../shared/Button";
+import Link from "next/link";
 
 export default function Hero() {
     const [active, setActive] = useState<"consult" | "freelance">("consult");
@@ -50,20 +51,24 @@ export default function Hero() {
                     <div className="mt-8 flex flex-col sm:flex-row items-center gap-4">
 
                         {/* Start Consulting Button */}
-                        <Button
-                            className={active === "consult" ? "" : "bg-transparent border border-gray-500 text-gray-400 shadow-none"}
-                            onClick={() => setActive("consult")}
-                        >
-                            Start Consulting
-                        </Button>
+                        <Link href="#contact" className="w-full sm:w-auto">
+                            <Button
+                                className={active === "consult" ? "" : "bg-transparent border border-gray-500 text-gray-400 shadow-none"}
+                                onClick={() => setActive("consult")}
+                            >
+                                Start Consulting
+                            </Button>
+                        </Link>
 
                         {/* Available for Freelance Button */}
-                        <Button
-                            className={active === "freelance" ? "" : "bg-transparent border border-gray-500 text-gray-400 shadow-none"}
-                            onClick={() => setActive("freelance")}
-                        >
-                            Available for Freelance
-                        </Button>
+                        <Link href="#contact" className="w-full sm:w-auto">
+                            <Button
+                                className={active === "freelance" ? "" : "bg-transparent border border-gray-500 text-gray-400 shadow-none"}
+                                onClick={() => setActive("freelance")}
+                            >
+                                Available for Freelance
+                            </Button>
+                        </Link>
 
                     </div>
                 </div>
