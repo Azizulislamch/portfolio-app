@@ -1,6 +1,6 @@
 # 🚀 Professional Portfolio Website - Azizul Islam
 
-A modern, responsive, and high-performance portfolio website built with **Next.js 15**, **TypeScript**, and **MongoDB**. This project showcases my journey as a Web Developer and Competitive Programmer, featuring a dynamic project showcase, blog system, and a sleek dark-themed UI.
+A modern, responsive, and high-performance portfolio website built with **Next.js 16**, **TypeScript**, and **MongoDB**. This project showcases my journey as a Web Developer and Competitive Programmer, featuring a dynamic project showcase, blog system, and a sleek dark-themed UI.
 
 ## 🌐 Live Demo
 - **Vercel Deployment:** [https://portfolio-app-azizul.vercel.app/](https://portfolio-app-azizul.vercel.app/)
