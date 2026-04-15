@@ -1,16 +1,17 @@
-import Blogs from "../components/frontend/Blogs";
-import About from "../components/frontend/About";
-import Hero from "../components/frontend/Hero";
-import Navbar from "../components/frontend/Navbar";
-import Projects from "../components/frontend/Projects";
-import Services from "../components/frontend/Services";
-import Skills from "../components/frontend/Skills";
+import Blogs from "@/components/frontend/Blogs";
+import About from "@/components/frontend/About";
+import Hero from "@/components/frontend/Hero";
+import Navbar from "@/components/frontend/Navbar";
+import Projects from "@/components/frontend/Projects";
+import Services from "@/components/frontend/Services";
+import Skills from "@/components/frontend/Skills";
 
-import { connectDB } from "../lib/db";
+import { connectDB } from "@/lib/db";
 import { Project } from "@/models/Project";
 import { Blog } from "@/models/Blog";
 import Contact from "@/components/frontend/Contact";
 import Resume from "@/components/frontend/Resume";
+import Footer from "@/components/frontend/Footer";
 
 // const sampleProjects = [
 //   {
@@ -55,6 +56,7 @@ export default async function Home() {
       <Projects projects={projects} />
       <Blogs blogs={blogs} />
       <Contact />
+      <Footer />
     </main>
   );
 }
