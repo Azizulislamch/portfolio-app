@@ -2,14 +2,14 @@ import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/db";
 import { Blog } from "@/models/Blog";
 
-// ১. GET Method - নির্দিষ্ট ব্লগের ডাটা রিড করার জন্য
+// GET Method
 export async function GET(
   request: Request,
-  { params }: { params: Promise<{ id: string }> } // params এখন একটি Promise
+  { params }: { params: Promise<{ id: string }> } 
 ) {
   try {
     await connectDB();
-    const { id } = await params; // আইডি অ্যাক্সেস করার আগে await করতে হবে
+    const { id } = await params; 
     const blog = await Blog.findById(id);
 
     if (!blog) {
@@ -25,17 +25,16 @@ export async function GET(
   }
 }
 
-// ২. PUT Method - ব্লগের ডাটা আপডেট করার জন্য
+// PUT Method 
 export async function PUT(
   request: Request,
-  { params }: { params: Promise<{ id: string }> } // এখানেও Promise টাইপ ব্যবহার করতে হবে
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectDB();
-    const { id } = await params; // await করে আইডি নিতে হবে
+    const { id } = await params;
     const body = await request.json();
 
-    // ডাটাবেসে আপডেট প্রক্রিয়া
     const updatedBlog = await Blog.findByIdAndUpdate(
       id,
       { $set: body },
@@ -55,7 +54,7 @@ export async function PUT(
   }
 }
 
-// ৩. DELETE Method - ব্লগ ডিলিট করার জন্য
+// DELETE Method
 export async function DELETE(
   request: Request,
   { params }: { params: Promise<{ id: string }> }

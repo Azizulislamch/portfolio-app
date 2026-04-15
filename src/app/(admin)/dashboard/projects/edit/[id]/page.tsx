@@ -12,14 +12,14 @@ export default function EditProject() {
 
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
-  
+
   const [formData, setFormData] = useState({
     title: "",
     description: "",
     image: "",
     liveLink: "",
     githubLink: "",
-    technologies: "", // এটি স্ট্রিং হিসেবে থাকবে
+    technologies: "",
   });
 
   useEffect(() => {
@@ -29,16 +29,15 @@ export default function EditProject() {
         const data = await res.json();
 
         if (res.ok) {
-          // ডাটা সেট করার সময় technologies চেক করা হচ্ছে
           setFormData({
             title: data.title || "",
             description: data.description || "",
             image: data.image || "",
             liveLink: data.liveLink || "",
             githubLink: data.githubLink || "",
-            // ডাটা যদি অ্যারে হয় তবেই join করবে, নাহলে যা আছে তাই দেখাবে
-            technologies: Array.isArray(data.technologies) 
-              ? data.technologies.join(", ") 
+            
+            technologies: Array.isArray(data.technologies)
+              ? data.technologies.join(", ")
               : (data.technologies || ""),
           });
         }
@@ -57,7 +56,7 @@ export default function EditProject() {
     e.preventDefault();
     setUpdating(true);
 
-    // সেভ করার আগে স্ট্রিংকে আবার অ্যারেতে রূপান্তর
+    // String is converted into array before save
     const techArray = formData.technologies
       .split(",")
       .map((t) => t.trim())
@@ -115,7 +114,7 @@ export default function EditProject() {
             />
           </div>
 
-          {/* Tech Stack - এই ফিল্ডটি এখন ডাটা দেখাবে */}
+          {/* Tech Stack */}
           <div className="space-y-3">
             <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 ml-1">Tech Stack (Comma Separated)</label>
             <input

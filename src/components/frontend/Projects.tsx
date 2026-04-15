@@ -9,7 +9,7 @@ interface Project {
   title: string;
   description: string;
   image: string;
-  tags: string[];
+  technologies: string[];
   githubLink: string;
   liveLink: string;
 }
@@ -54,7 +54,7 @@ const Projects = ({ projects }: { projects: Project[] }) => {
                 </p>
 
                 <div className="flex flex-wrap gap-3">
-                  {project.tags.map(tag => (
+                  {project.technologies.map(tag => (
                     <span key={tag} className="bg-[#1a1a1a] text-gray-400 px-4 py-2 rounded-full text-sm border border-white/5">
                       {tag}
                     </span>

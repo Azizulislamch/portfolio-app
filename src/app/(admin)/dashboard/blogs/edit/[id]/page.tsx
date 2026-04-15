@@ -139,7 +139,7 @@ export default function EditBlog() {
             <button
                 disabled={updating}
                 type="submit"
-                className="flex-[2] bg-red-600 hover:bg-red-700 text-white font-black py-5 rounded-2xl transition-all uppercase tracking-[0.3em] text-xs shadow-[0_15px_30px_-10px_rgba(220,38,38,0.5)] disabled:opacity-50"
+                className="flex-2 bg-red-600 hover:bg-red-700 text-white font-black py-5 rounded-2xl transition-all uppercase tracking-[0.3em] text-xs shadow-[0_15px_30px_-10px_rgba(220,38,38,0.5)] disabled:opacity-50"
             >
                 {updating ? "Updating Blog..." : "Update Post"}
             </button>

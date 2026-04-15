@@ -1,16 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import {connectDB} from "@/lib/db";
-import {Project} from "@/models/Project"; // নিশ্চিত হোন যে এটি ডিফল্ট ইম্পোর্ট
+import {Project} from "@/models/Project"; 
 
-// ১. GET Method - নির্দিষ্ট প্রোজেক্টের ডাটা পাওয়ার জন্য
+// GET Method
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> } // params এখন একটি Promise
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectDB();
-    const { id } = await params; // আইডি অ্যাক্সেস করার আগে await করতে হবে
-    
+    const { id } = await params;
     const project = await Project.findById(id);
 
     if (!project) {
@@ -26,14 +25,14 @@ export async function GET(
   }
 }
 
-// ২. PUT Method - প্রোজেক্টের ডাটা আপডেট করার জন্য
+// PUT Method
 export async function PUT(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> } // এখানেও Promise ব্যবহার করুন
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectDB();
-    const { id } = await params; // await করে আইডি নিতে হবে
+    const { id } = await params; 
     const body = await request.json();
 
     const updatedProject = await Project.findByIdAndUpdate(
@@ -55,7 +54,7 @@ export async function PUT(
   }
 }
 
-// ৩. DELETE Method - প্রোজেক্ট ডিলিট করার জন্য
+// DELETE Method
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
