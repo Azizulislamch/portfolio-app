@@ -20,7 +20,7 @@ const Projects = ({ projects }: { projects: Project[] }) => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <p className="text-red-500 uppercase tracking-widest text-sm font-bold mb-2">Showcase my skills</p>
-          <h2 className="text-4xl md:text-6xl font-black">Featured Work</h2>
+          <h2 className="text-4xl md:text-6xl font-extrabold uppercase">Featured Work</h2>
         </div>
 
         <div className="space-y-24">

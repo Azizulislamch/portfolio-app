@@ -13,7 +13,7 @@ const Contact = () => {
                     <div className="space-y-12">
                         <div>
                             <p className="text-red-500 uppercase tracking-widest text-sm font-bold mb-2">Contact Me</p>
-                            <h2 className="text-4xl md:text-6xl font-black mb-6 uppercase">Get In Touch Now</h2>
+                            <h2 className="text-4xl md:text-6xl font-extrabold mb-6 uppercase">Get In Touch Now</h2>
                             <p className="text-gray-400 text-lg max-w-md">
                                 Whether it's design, development, or advice, I'm here to help. Send me a note and let's start a conversation.
                             </p>
@@ -27,8 +27,8 @@ const Contact = () => {
                                 { icon: "fa-map-marker-alt", label: "Location", value: "Plot:1081, 1092 Khilbarirtek, Vatara, Dhaka 1212" },
                             ].map((info, idx) => (
                                 <div key={idx} className="flex items-start sm:items-center gap-6 group">
-                                    <div className="shrink-0 w-16 h-16 bg-[#1a1a1a] border-l-4 border-red-500 flex items-center justify-center rounded-xl group-hover:bg-red-500 transition-all duration-300">
-                                        <i className={`fas ${info.icon} text-red-500 group-hover:text-white text-xl`}></i>
+                                    <div className="shrink-0 w-16 h-16 bg-[#1a1a1a] border-l-4 border-red-700 flex items-center justify-center rounded-xl group-hover:bg-red-700 transition-all duration-300">
+                                        <i className={`fas ${info.icon} text-red-700 group-hover:text-white text-xl`}></i>
                                     </div>
                                     <div className="overflow-hidden">
                                         <p className="text-sm uppercase font-bold tracking-tighter text-white/50 mb-1">{info.label}</p>

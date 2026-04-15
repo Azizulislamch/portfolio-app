@@ -66,12 +66,12 @@ const Services: React.FC = () => {
                         <span className="text-red-500 font-bold text-sm uppercase tracking-[0.2em] mb-4 block">
                             Our Services
                         </span>
-                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-none">
+                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter leading-none">
                             THE EASE-SERVICE PROCESS
                         </h2>
                     </motion.div>
 
-                    <motion.div
+                    {/* <motion.div
                         initial={{ opacity: 0, x: 100 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8 }}
@@ -86,7 +86,7 @@ const Services: React.FC = () => {
                             variant="iconOnly"
                             icon="fa-solid fa-arrow-up-right-from-square"
                         />
-                    </motion.div>
+                    </motion.div> */}
                 </div>
 
                 {/* SERVICES GRID */}
@@ -100,7 +100,7 @@ const Services: React.FC = () => {
                             viewport={{ once: false }}
                             whileHover={{ y: -10 }}
 
-                            className="group relative bg-[#150a0a] border border-white/5 p-10 rounded-[40px] text-center flex flex-col items-center transition-all duration-300 hover:border-red-600/30"
+                            className="group relative bg-[#150a0a] border border-white/5 p-10 rounded-[40px] text-center flex flex-col items-center transition-all duration-300 hover:border-red-600/40"
                         >
                             <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-8 shadow-xl transition-transform duration-700 group-hover:rotate-360">
                                 <i className={`${service.icon} text-red-600 text-2xl`}></i>
@@ -111,9 +111,9 @@ const Services: React.FC = () => {
                                 {service.description}
                             </p>
 
-                            <Button>
+                            {/* <Button>
                                 View Services
-                            </Button>
+                            </Button> */}
 
                             <div className="absolute inset-0 rounded-[40px] bg-red-600/0 group-hover:bg-red-600/5 transition-all duration-500 pointer-events-none" />
                         </motion.div>

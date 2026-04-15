@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 interface SkillItem {
   id: number;
   name: string;
-  percentage: number;
+  //percentage: number;
   icon: string;
   color: string;
 }
@@ -13,29 +13,29 @@ interface SkillItem {
 const Skills: React.FC = () => {
   const skillData: SkillItem[] = [
     // --- Core Frontend ---
-    { id: 6, name: "HTML5", percentage: 95, icon: "fa-brands fa-html5", color: "#e34f26" },
-    { id: 7, name: "CSS3", percentage: 92, icon: "fa-brands fa-css3-alt", color: "#1572b6" },
-    { id: 3, name: "Tailwind", percentage: 98, icon: "fa-solid fa-wind", color: "#38bdf8" },
-    { id: 5, name: "JavaScript", percentage: 92, icon: "fa-brands fa-js", color: "#f7df1e" },
-    { id: 4, name: "TypeScript", percentage: 85, icon: "fa-solid fa-code", color: "#3178c6" },
+    { id: 6, name: "HTML5", icon: "fa-brands fa-html5", color: "#e34f26" },
+    { id: 7, name: "CSS3", icon: "fa-brands fa-css3-alt", color: "#1572b6" },
+    { id: 3, name: "Tailwind", icon: "fa-solid fa-wind", color: "#38bdf8" },
+    { id: 5, name: "JavaScript", icon: "fa-brands fa-js", color: "#f7df1e" },
+    { id: 4, name: "TypeScript", icon: "fa-solid fa-code", color: "#3178c6" },
 
     // --- Frameworks & Library ---
-    { id: 2, name: "React", percentage: 95, icon: "fa-brands fa-react", color: "#61dafb" },
-    { id: 1, name: "Next.js", percentage: 90, icon: "fa-solid fa-n", color: "#ffffff" },
+    { id: 2, name: "React", icon: "fa-brands fa-react", color: "#61dafb" },
+    { id: 1, name: "Next.js", icon: "fa-solid fa-n", color: "#ffffff" },
 
     // --- MERN Stack (I2I) ---
-    { id: 10, name: "Node.js", percentage: 80, icon: "fa-brands fa-node-js", color: "#339933" },
-    { id: 11, name: "Express.js", percentage: 85, icon: "fa-solid fa-server", color: "#ffffff" },
-    { id: 12, name: "MongoDB", percentage: 82, icon: "fa-solid fa-database", color: "#47a248" },
+    { id: 10, name: "Node.js", icon: "fa-brands fa-node-js", color: "#339933" },
+    { id: 11, name: "Express.js", icon: "fa-solid fa-server", color: "#ffffff" },
+    { id: 12, name: "MongoDB", icon: "fa-solid fa-database", color: "#47a248" },
 
     // --- Version Control & Tools ---
-    { id: 15, name: "Git", percentage: 90, icon: "fa-brands fa-git-alt", color: "#f05032" }, // Git যোগ করা হয়েছে
-    { id: 9, name: "GitHub", percentage: 92, icon: "fa-brands fa-github", color: "#ffffff" },
-    { id: 14, name: "Postman", percentage: 85, icon: "fa-solid fa-envelope-open-text", color: "#ff6c37" },
-    { id: 8, name: "Figma", percentage: 88, icon: "fa-brands fa-figma", color: "#f24e1e" },
+    { id: 15, name: "Git", icon: "fa-brands fa-git-alt", color: "#f05032" }, // Git যোগ করা হয়েছে
+    { id: 9, name: "GitHub", icon: "fa-brands fa-github", color: "#ffffff" },
+    { id: 14, name: "Postman", icon: "fa-solid fa-envelope-open-text", color: "#ff6c37" },
+    { id: 8, name: "Figma", icon: "fa-brands fa-figma", color: "#f24e1e" },
 
     // --- Problem Solving (CSES/Competitive) ---
-    { id: 16, name: "C++", percentage: 85, icon: "fa-solid fa-file-code", color: "#00599c" },
+    { id: 16, name: "C++", icon: "fa-solid fa-file-code", color: "#00599c" },
   ];
 
   const containerVariants = {
@@ -65,7 +65,7 @@ const Skills: React.FC = () => {
           <span className="text-red-500 font-bold text-sm uppercase tracking-[0.2em] mb-4 block">
             My Favorite Tools
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-none">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl uppercase font-extrabold tracking-tighter leading-none">
             Tech Stack That Power My Work
           </h2>
         </motion.div>
@@ -96,9 +96,9 @@ const Skills: React.FC = () => {
                 <i className={`${skill.icon}`} style={{ color: skill.color }}></i>
               </div>
 
-              <h3 className="text-2xl md:text-3xl font-black mb-1.5 transition-colors duration-300 group-hover:text-red-500">
+              {/* <h3 className="text-2xl md:text-3xl font-black mb-1.5 transition-colors duration-300 group-hover:text-red-500">
                 {skill.percentage}%
-              </h3>
+              </h3> */}
 
               <p className="text-[10px] md:text-sm font-bold text-gray-400 uppercase tracking-widest transition-colors duration-300 group-hover:text-gray-200">
                 {skill.name}

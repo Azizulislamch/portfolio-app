@@ -39,7 +39,7 @@ const Resume = () => {
                 {/* Section Heading */}
                 <div className="text-center mb-16">
                     <span className="text-red-600 uppercase tracking-widest font-medium">Resume</span>
-                    <h2 className="text-4xl md:text-6xl font-black text-white mt-2 uppercase">My Resume</h2>
+                    <h2 className="text-4xl md:text-6xl font-extrabold text-white mt-2 uppercase">My Resume</h2>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">

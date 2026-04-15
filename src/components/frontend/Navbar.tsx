@@ -97,7 +97,7 @@ const Navbar = () => {
 
                 {/* LOGO */}
                 <Link href="/" onClick={scrollToTop} className="text-2xl md:text-3xl font-black text-white z-110">
-                    AZIZUL <span className="text-red-600">ISLAM</span>
+                    AZIZUL <span className="text-red-700">ISLAM</span>
                 </Link>
 
                 {/* DESKTOP MENU */}

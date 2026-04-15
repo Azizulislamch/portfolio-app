@@ -32,7 +32,7 @@ const Blogs = ({ blogs }: { blogs: Blog[] }) => {
                 {/* Section Title */}
                 <div className="text-center mb-16">
                     <p className="text-red-500 uppercase tracking-widest text-sm font-bold mb-2">Read my thoughts</p>
-                    <h2 className="text-4xl md:text-6xl font-black">Latest Blogs</h2>
+                    <h2 className="text-4xl md:text-6xl font-extrabold uppercase">Latest Blogs</h2>
                 </div>
 
                 <div className="grid grid-cols-1 gap-12">
