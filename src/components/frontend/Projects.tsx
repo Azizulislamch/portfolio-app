@@ -61,21 +61,21 @@ const Projects = ({ projects }: { projects: Project[] }) => {
                   ))}
                 </div>
 
-                {/* Buttons: Live Demo and Font Awesome GitHub */}
+                {/* Buttons: Live Link and Font Awesome GitHub */}
                 <div className="pt-6 flex flex-wrap gap-4">
                   <a href={project.liveLink} target="_blank" rel="noopener noreferrer">
-                    <Button>Live Demo</Button>
+                    <Button className="text-[16px]">Live Link</Button>
                   </a>
 
                   <a
                     href={project.githubLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-6 py-3 border border-white/10 hover:border-red-500/50 rounded-full transition-all bg-white/5 font-semibold text-sm hover:text-red-500"
+                    className="flex items-center gap-2 px-5 py-3 border border-white/10 hover:border-red-500/50 rounded-full transition-all bg-white/5 font-semibold text-[16px] hover:text-red-500"
                   >
                     {/* Font Awesome GitHub Icon */}
-                    <i className="fab fa-github text-lg"></i>
-                    GitHub Repo
+                    <i className="fab fa-github text-xl"></i>
+                    GitHub Link
                   </a>
                 </div>
               </div>

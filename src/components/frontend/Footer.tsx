@@ -17,7 +17,7 @@ export default function Footer() {
             <div className="max-w-7xl mx-auto px-5">
 
                 <div className="flex flex-col md:flex-row justify-between items-center mb-8">
-                    <div className="text-3xl font-black tracking-tighter italic uppercase">
+                    <div className="text-3xl text-gray-400 font-black tracking-tighter italic uppercase">
                         AZIZUL<span className="text-red-700"> ISLAM</span>
                     </div>
                 </div>
@@ -45,7 +45,7 @@ export default function Footer() {
             </div>
 
             {/* Marquee */}
-            <div className="mt-5 relative flex overflow-x-hidden pointer-events-none select-none pt-5">
+            <div className="relative flex overflow-x-hidden pointer-events-none select-none pt-5">
                 <div className="animate-marquee whitespace-nowrap flex">
                     <span className="text-[8vw] font-black uppercase leading-none text-white opacity-[0.15] tracking-tighter">
                         Web Developer & Competitive Programmer • Passionate About Clean Code • 
