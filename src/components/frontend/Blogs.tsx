@@ -48,7 +48,7 @@ const Blogs = ({ blogs }: { blogs: Blog[] }) => {
                             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                                 <div className="flex-1 space-y-4">
                                     <div className="flex items-center gap-4">
-                                        <span className="bg-red-500/10 text-red-500 px-4 py-1 rounded-full text-xs font-bold uppercase">
+                                        <span className="bg-red-500/10 text-red-600 px-4 py-1 rounded-full text-xs font-bold uppercase">
                                             {blog.category}
                                         </span>
                                         <span className="text-gray-500 text-sm">
@@ -60,7 +60,7 @@ const Blogs = ({ blogs }: { blogs: Blog[] }) => {
                                         </span>
                                     </div>
 
-                                    <h3 className="text-3xl md:text-4xl font-bold group-hover:text-red-500 transition-colors duration-300">
+                                    <h3 className="text-3xl md:text-4xl font-bold group-hover:text-red-700 transition-colors duration-300">
                                         {blog.title}
                                     </h3>
 

@@ -25,7 +25,7 @@ export default function Hero() {
                         HELLO I AM
                     </h1>
 
-                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-red-600 mt-4 md:mt-6 mb-4 md:mb-5">
+                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-red-700 mt-4 md:mt-6 mb-4 md:mb-5">
                         <Typewriter
                             words={[
                                 "Frontend Developer",
@@ -86,7 +86,7 @@ export default function Hero() {
                     />
 
                     <motion.div
-                        className="absolute top-2 right-2 md:top-5 md:-right-6 bg-white text-black px-3 py-1 md:px-4 md:py-2 rounded-xl shadow-lg text-xs md:text-sm mt-2"
+                        className="absolute top-2 -right-2 md:top-5 md:-right-6 bg-white text-black px-3 py-1 md:px-4 md:py-2 rounded-xl shadow-lg text-xs md:text-sm mt-2"
 
                         animate={{ y: [0, -15] }}
                         transition={{

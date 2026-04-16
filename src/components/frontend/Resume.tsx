@@ -46,7 +46,7 @@ const Resume = () => {
                     
                     {/* EDUCATION PART */}
                     <div>
-                        <h3 className="text-2xl font-bold text-white mb-8 border-l-4 border-red-600 pl-4">Education :-</h3>
+                        <h3 className="text-2xl font-bold text-white mb-8 border-l-4 border-red-700 pl-4">Education :-</h3>
                         <div className="space-y-8 border-l border-gray-800 ml-2">
                             {education.map((edu, index) => (
                                 <div key={index} className="relative pl-8 group">
@@ -54,7 +54,7 @@ const Resume = () => {
                                     <div className="absolute w-4 h-4 bg-red-600 rounded-full -left-[8.5px] top-1 group-hover:scale-125 transition-transform shadow-[0_0_10px_#dc2626]" />
                                     
                                     <div className="bg-[#121212] p-6 rounded-xl hover:bg-[#1a1a1a] transition-colors border border-gray-900 shadow-xl">
-                                        <h4 className="text-xl font-bold text-red-500">{edu.title}</h4>
+                                        <h4 className="text-xl font-bold text-red-700">{edu.title}</h4>
                                         <p className="text-gray-400 text-sm font-semibold mt-1 uppercase">{edu.institution} : {edu.duration}</p>
                                         <p className="text-white/60 text-xs mt-1 italic">{edu.result}</p>
                                         <div className="h-px w-full bg-gray-800 my-4" />
@@ -67,7 +67,7 @@ const Resume = () => {
 
                     {/* EXPERIENCE PART */}
                     <div>
-                        <h3 className="text-2xl font-bold text-white mb-8 border-l-4 border-red-600 pl-4">Experience :-</h3>
+                        <h3 className="text-2xl font-bold text-white mb-8 border-l-4 border-red-700 pl-4">Experience :-</h3>
                         <div className="space-y-8 border-l border-gray-800 ml-2">
                             {experience.map((exp, index) => (
                                 <div key={index} className="relative pl-8 group">
@@ -75,7 +75,7 @@ const Resume = () => {
                                     <div className="absolute w-4 h-4 bg-red-600 rounded-full -left-[8.5px] top-1 group-hover:scale-125 transition-transform shadow-[0_0_10px_#dc2626]" />
                                     
                                     <div className="bg-[#121212] p-6 rounded-xl hover:bg-[#1a1a1a] transition-colors border border-gray-900 shadow-xl">
-                                        <h4 className="text-xl font-bold text-red-500">{exp.title}</h4>
+                                        <h4 className="text-xl font-bold text-red-700">{exp.title}</h4>
                                         <p className="text-gray-400 text-sm font-semibold mt-1 uppercase">{exp.institution} : {exp.duration}</p>
                                         <div className="h-px w-full bg-gray-800 my-4" />
                                         <p className="text-gray-400 text-sm leading-relaxed">{exp.desc}</p>

@@ -73,7 +73,7 @@ const About: React.FC = () => {
                                     <h3 className="text-4xl md:text-5xl font-black mb-2 text-white">
                                         {item.value}
                                     </h3>
-                                    <p className="text-[10px] md:text-xs font-bold text-red-500 uppercase tracking-widest leading-tight">
+                                    <p className="text-[10px] md:text-xs font-bold text-red-600 uppercase tracking-widest leading-tight">
                                         {item.label}
                                     </p>
                                 </div>
@@ -89,7 +89,7 @@ const About: React.FC = () => {
                     transition={{ duration: 0.6 }}
                     viewport={{ once: false }}
                 >
-                    <span className="text-red-500 font-bold text-sm uppercase tracking-widest mb-4 block">
+                    <span className="text-red-600 font-bold text-sm uppercase tracking-widest mb-4 block">
                         About Me
                     </span>
                     <h2 className="text-4xl md:text-6xl font-extrabold mb-8 tracking-tighter">
@@ -105,7 +105,7 @@ const About: React.FC = () => {
                     <div className="space-y-4 mb-10">
                         {infoDetails.map((info, idx) => (
                             <div key={idx} className="flex items-start gap-4">
-                                <span className="w-3 h-3 bg-red-600 mt-1.5 shrink-0 rounded-sm" />
+                                <span className="w-3 h-3 bg-red-700 mt-1.5 shrink-0 rounded-sm" />
                                 <p className="text-base">
                                     <span className="font-bold mr-2">{info.label} :</span>
                                     <span className="text-gray-400">{info.value}</span>

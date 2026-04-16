@@ -12,7 +12,7 @@ const Contact = () => {
                     {/* Left Side: Contact Info */}
                     <div className="space-y-12">
                         <div>
-                            <p className="text-red-500 uppercase tracking-widest text-sm font-bold mb-2">Contact Me</p>
+                            <p className="text-red-600 uppercase tracking-widest text-sm font-bold mb-2">Contact Me</p>
                             <h2 className="text-4xl md:text-6xl font-extrabold mb-6 uppercase">Get In Touch Now</h2>
                             <p className="text-gray-400 text-lg max-w-md">
                                 Whether it's design, development, or advice, I'm here to help. Send me a note and let's start a conversation.
