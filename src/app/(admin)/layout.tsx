@@ -4,6 +4,8 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
+import { signOut } from "next-auth/react";
+
 
 const AdminLayout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
@@ -50,8 +52,19 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
               </Link>
             );
           })}
+
+          {/* LOGOUT BUTTON */}
+          <button
+            onClick={() => signOut()}
+            className="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-400 hover:bg-red-600/10 hover:text-red-500 transition-all duration-300 group mt-4 border border-transparent hover:border-red-600/20"
+          >
+            <i className="fa-solid fa-right-from-bracket w-5 text-center"></i>
+            <span className="font-bold text-sm uppercase tracking-wider">Logout</span>
+          </button>
+
         </nav>
 
+        {/* --- FOOTER --- */}
         <div className="p-6 border-t border-white/5">
           <p className="text-[10px] text-gray-500 uppercase tracking-widest text-center">
             © 2026 Azizul Islam

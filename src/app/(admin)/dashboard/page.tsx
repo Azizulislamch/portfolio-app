@@ -4,13 +4,11 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const AdminDashboard = () => {
-  // প্রজেক্ট এবং ব্লগের কাউন্ট রাখার জন্য স্টেট
   const [counts, setCounts] = useState({ projects: 0, blogs: 0 });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // প্রজেক্ট এবং ব্লগ ডাটা একসাথে ফেচ করা হচ্ছে
         const [projectRes, blogRes] = await Promise.all([
           fetch("/api/projects"),
           fetch("/api/blogs")
@@ -19,7 +17,6 @@ const AdminDashboard = () => {
         const projects = await projectRes.json();
         const blogs = await blogRes.json();
 
-        // ডাটাবেস থেকে পাওয়া সংখ্যা স্টেটে সেট করা
         setCounts({
           projects: Array.isArray(projects) ? projects.length : 0,
           blogs: Array.isArray(blogs) ? blogs.length : 0
@@ -35,7 +32,7 @@ const AdminDashboard = () => {
   const stats = [
     {
       label: "Total Projects",
-      value: counts.projects.toString().padStart(2, '0'), // ০২ এভাবে দেখাবে
+      value: counts.projects.toString().padStart(2, '0'),
       icon: "fa-solid fa-code",
       color: "text-blue-500"
     },
