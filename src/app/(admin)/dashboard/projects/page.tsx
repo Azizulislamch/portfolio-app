@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, Reorder } from "framer-motion"; // Reorder ইম্পোর্ট করা হয়েছে
 import Swal from "sweetalert2";
 
 interface Project {
@@ -10,6 +10,7 @@ interface Project {
     title: string;
     technologies: string[];
     liveLink: string;
+    order?: number; // order ফিল্ডটি ঐচ্ছিক হিসেবে রাখা হয়েছে
 }
 
 export default function ProjectManagement() {
@@ -21,8 +22,12 @@ export default function ProjectManagement() {
             try {
                 const res = await fetch("/api/projects");
                 const data = await res.json();
-                // নিশ্চিত করছি যে ডাটাটি সব সময় একটি অ্যারে হবে
-                setProjects(Array.isArray(data) ? data : []);
+
+                // ডাটা লোড করার সময় order অনুযায়ী সর্ট করে দেখানো
+                const sortedProjects = Array.isArray(data)
+                    ? data.sort((a, b) => (a.order || 0) - (b.order || 0))
+                    : [];
+                setProjects(sortedProjects);
             } catch (error) {
                 console.error("Failed to fetch projects", error);
             } finally {
@@ -31,6 +36,20 @@ export default function ProjectManagement() {
         };
         fetchProjects();
     }, []);
+
+    // ড্র্যাগ শেষ হলে ডাটাবেসে নতুন সিরিয়াল সেভ করার ফাংশন
+    const handleReorder = async (newOrder: Project[]) => {
+        setProjects(newOrder); // সাথে সাথে UI আপডেট
+        try {
+            await fetch("/api/projects/reorder", {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ updatedProjects: newOrder }),
+            });
+        } catch (error) {
+            console.error("Failed to update order", error);
+        }
+    };
 
     const handleDelete = async (id: string) => {
         Swal.fire({
@@ -85,43 +104,49 @@ export default function ProjectManagement() {
             </div>
 
             <div className="bg-[#111111] rounded-[30px] border border-white/5 overflow-hidden shadow-2xl">
-                <table className="w-full text-left border-collapse">
-                    <thead>
-                        <tr className="bg-white/5 text-gray-400 uppercase text-[10px] tracking-[0.2em]">
-                            <th className="px-8 py-6">Project Title</th>
-                            <th className="px-8 py-6">Tech Stack</th>
-                            <th className="px-8 py-6 text-right">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y divide-white/5">
-                        {loading ? (
-                            <tr><td colSpan={3} className="p-20 text-center text-gray-500 font-bold uppercase animate-pulse">Loading Projects...</td></tr>
-                        ) : projects.length === 0 ? (
-                            <tr><td colSpan={3} className="p-20 text-center text-gray-500">No projects found.</td></tr>
-                        ) : (
-                            projects.map((project) => (
-                                <tr key={project._id} className="hover:bg-white/2 transition-colors group">
-                                    <td className="px-8 py-6 font-bold text-gray-200 group-hover:text-red-500 transition-colors">
+                <div className="w-full text-left border-collapse">
+                    {/* টেবিল হেডার */}
+                    <div className="grid grid-cols-12 bg-white/5 text-gray-400 uppercase text-[10px] tracking-[0.2em] px-8 py-6 font-bold">
+                        <div className="col-span-1">Move</div>
+                        <div className="col-span-5">Project Title</div>
+                        <div className="col-span-3">Tech Stack</div>
+                        <div className="col-span-3 text-right">Actions</div>
+                    </div>
+
+                    {loading ? (
+                        <div className="p-20 text-center text-gray-500 font-bold uppercase animate-pulse">Loading Projects...</div>
+                    ) : projects.length === 0 ? (
+                        <div className="p-20 text-center text-gray-500">No projects found.</div>
+                    ) : (
+                        // ড্র্যাগ অ্যান্ড ড্রপ লিস্ট
+                        <Reorder.Group axis="y" values={projects} onReorder={handleReorder} className="divide-y divide-white/5">
+                            {projects.map((project) => (
+                                <Reorder.Item
+                                    key={project._id}
+                                    value={project}
+                                    className="grid grid-cols-12 px-8 py-6 hover:bg-white/2 transition-colors group items-center bg-[#111111] cursor-grab active:cursor-grabbing"
+                                >
+                                    <div className="col-span-1 text-gray-600 group-hover:text-red-500 transition-colors">
+                                        ☰
+                                    </div>
+                                    <div className="col-span-5 font-bold text-gray-200 group-hover:text-red-500 transition-colors">
                                         {project.title}
-                                    </td>
-                                    <td className="px-8 py-6">
+                                    </div>
+                                    <div className="col-span-3">
                                         <div className="flex flex-wrap gap-2">
-                                            {/* FIX: এখানে technologies? ব্যবহার করা হয়েছে যাতে এটি undefined থাকলেও ক্র্যাশ না করে */}
                                             {project.technologies?.slice(0, 3).map((tech, i) => (
                                                 <span key={i} className="text-[9px] bg-white/5 px-2 py-1 rounded text-gray-400 uppercase font-bold border border-white/5">
                                                     {tech}
                                                 </span>
                                             ))}
-
-                                            {/* FIX: এখানেও ঐচ্ছিক চেক (Length check) যোগ করা হয়েছে */}
                                             {project.technologies?.length > 3 && (
                                                 <span className="text-[9px] text-gray-600">
                                                     +{project.technologies.length - 3}
                                                 </span>
                                             )}
                                         </div>
-                                    </td>
-                                    <td className="px-8 py-6 text-right space-x-6">
+                                    </div>
+                                    <div className="col-span-3 text-right space-x-6">
                                         <Link
                                             href={`/dashboard/projects/edit/${project._id}`}
                                             className="text-gray-500 hover:text-white transition-colors text-sm font-bold uppercase tracking-widest"
@@ -134,12 +159,12 @@ export default function ProjectManagement() {
                                         >
                                             Delete
                                         </button>
-                                    </td>
-                                </tr>
-                            ))
-                        )}
-                    </tbody>
-                </table>
+                                    </div>
+                                </Reorder.Item>
+                            ))}
+                        </Reorder.Group>
+                    )}
+                </div>
             </div>
         </motion.div>
     );

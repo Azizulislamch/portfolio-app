@@ -1,20 +1,88 @@
-// src/app/(admin)/dashboard/page.tsx
-export default function AdminDashboard() {
+"use client";
+
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+
+const AdminDashboard = () => {
+  // প্রজেক্ট এবং ব্লগের কাউন্ট রাখার জন্য স্টেট
+  const [counts, setCounts] = useState({ projects: 0, blogs: 0 });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // প্রজেক্ট এবং ব্লগ ডাটা একসাথে ফেচ করা হচ্ছে
+        const [projectRes, blogRes] = await Promise.all([
+          fetch("/api/projects"),
+          fetch("/api/blogs")
+        ]);
+
+        const projects = await projectRes.json();
+        const blogs = await blogRes.json();
+
+        // ডাটাবেস থেকে পাওয়া সংখ্যা স্টেটে সেট করা
+        setCounts({
+          projects: Array.isArray(projects) ? projects.length : 0,
+          blogs: Array.isArray(blogs) ? blogs.length : 0
+        });
+      } catch (error) {
+        console.error("Failed to fetch dashboard stats", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const stats = [
+    {
+      label: "Total Projects",
+      value: counts.projects.toString().padStart(2, '0'), // ০২ এভাবে দেখাবে
+      icon: "fa-solid fa-code",
+      color: "text-blue-500"
+    },
+    {
+      label: "Total Blogs",
+      value: counts.blogs.toString().padStart(2, '0'),
+      icon: "fa-solid fa-pen-fancy",
+      color: "text-red-500"
+    },
+    {
+      label: "Total Views",
+      value: "1.2k",
+      icon: "fa-solid fa-eye",
+      color: "text-green-500"
+    },
+  ];
+
   return (
-    <div className="p-10 text-white bg-[#0d0d0d] min-h-screen">
-      <h1 className="text-3xl font-bold mb-8">Admin Dashboard</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="p-6 bg-[#1a1a1a] rounded-2xl border border-white/10 hover:border-red-500/50 transition-all">
-          <h2 className="text-xl font-bold mb-2">Projects Management</h2>
-          <p className="text-gray-400 mb-4">Add, edit or delete your portfolio projects.</p>
-          <button className="bg-red-600 px-4 py-2 rounded-lg font-bold">Manage Projects</button>
-        </div>
-        <div className="p-6 bg-[#1a1a1a] rounded-2xl border border-white/10 hover:border-red-500/50 transition-all">
-          <h2 className="text-xl font-bold mb-2">Blog Management</h2>
-          <p className="text-gray-400 mb-4">Write and manage your thoughts/articles.</p>
-          <button className="bg-red-600 px-4 py-2 rounded-lg font-bold">Manage Blogs</button>
-        </div>
+    <div className="space-y-10">
+      <header>
+        <h1 className="text-4xl font-black uppercase italic tracking-tighter">
+          Welcome back, <span className="text-red-600">Azizul</span>
+        </h1>
+        <p className="text-gray-400 mt-2 font-medium tracking-widest uppercase text-xs">
+          Here is what's happening with your portfolio today.
+        </p>
+      </header>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {stats.map((stat, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 }}
+            className="bg-[#111111] p-8 rounded-[30px] border border-white/5 hover:border-red-500/20 transition-all group"
+          >
+            <div className={`w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center mb-6 text-xl ${stat.color}`}>
+              <i className={stat.icon}></i>
+            </div>
+            <h3 className="text-4xl font-black mb-1 tracking-tighter">{stat.value}</h3>
+            <p className="text-gray-500 text-xs font-bold uppercase tracking-widest">{stat.label}</p>
+          </motion.div>
+        ))}
       </div>
     </div>
   );
-}
+};
+
+export default AdminDashboard;

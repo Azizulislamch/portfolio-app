@@ -77,7 +77,7 @@ export default function Hero() {
                 <div className="relative flex justify-center">
 
                     <Image
-                        src="/assets/profile.png"
+                        src="/assets/profile2.png"
                         alt="profile"
                         width={300}
                         height={400}
@@ -86,7 +86,7 @@ export default function Hero() {
                     />
 
                     <motion.div
-                        className="absolute top-2 right-2 md:top-5 md:right-0 bg-white text-black px-3 py-1 md:px-4 md:py-2 rounded-xl shadow-lg text-xs md:text-sm mt-2"
+                        className="absolute top-2 right-2 md:top-5 md:-right-6 bg-white text-black px-3 py-1 md:px-4 md:py-2 rounded-xl shadow-lg text-xs md:text-sm mt-2"
 
                         animate={{ y: [0, -15] }}
                         transition={{
