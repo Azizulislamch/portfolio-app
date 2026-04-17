@@ -29,6 +29,10 @@ A modern, responsive, and high-performance portfolio website built with **Next.j
 - **Deployment:** Vercel.
 
 ---
+## 📸 Screenshot
+<img width="1701" height="824" alt="image" src="https://github.com/user-attachments/assets/e0a9be3b-a7ae-497b-a339-5f20c63002a0" />
+
+---
 
 ## ⚙️ Getting Started
 
