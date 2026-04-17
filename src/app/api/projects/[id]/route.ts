@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import {connectDB} from "@/lib/db";
-import {Project} from "@/models/Project"; 
+import { connectDB } from "@/lib/db";
+import { Project } from "@/models/Project";
 
 // GET Method
 export async function GET(
@@ -32,7 +32,7 @@ export async function PUT(
 ) {
   try {
     await connectDB();
-    const { id } = await params; 
+    const { id } = await params;
     const body = await request.json();
 
     const updatedProject = await Project.findByIdAndUpdate(
@@ -54,15 +54,15 @@ export async function PUT(
   }
 }
 
-// DELETE Method
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> } 
 ) {
   try {
     await connectDB();
+
     const { id } = await params;
-    
+
     const deletedProject = await Project.findByIdAndDelete(id);
 
     if (!deletedProject) {
@@ -71,9 +71,6 @@ export async function DELETE(
 
     return NextResponse.json({ message: "Project deleted successfully" });
   } catch (error: any) {
-    return NextResponse.json(
-      { message: "Delete failed", error: error.message },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

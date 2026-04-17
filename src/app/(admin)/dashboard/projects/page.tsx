@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion, Reorder } from "framer-motion"; // Reorder ইম্পোর্ট করা হয়েছে
+import { motion, Reorder } from "framer-motion";
 import Swal from "sweetalert2";
 
 interface Project {
@@ -10,7 +10,7 @@ interface Project {
     title: string;
     technologies: string[];
     liveLink: string;
-    order?: number; // order ফিল্ডটি ঐচ্ছিক হিসেবে রাখা হয়েছে
+    order?: number;
 }
 
 export default function ProjectManagement() {
@@ -23,7 +23,7 @@ export default function ProjectManagement() {
                 const res = await fetch("/api/projects");
                 const data = await res.json();
 
-                // ডাটা লোড করার সময় order অনুযায়ী সর্ট করে দেখানো
+                
                 const sortedProjects = Array.isArray(data)
                     ? data.sort((a, b) => (a.order || 0) - (b.order || 0))
                     : [];
@@ -37,9 +37,9 @@ export default function ProjectManagement() {
         fetchProjects();
     }, []);
 
-    // ড্র্যাগ শেষ হলে ডাটাবেসে নতুন সিরিয়াল সেভ করার ফাংশন
+    
     const handleReorder = async (newOrder: Project[]) => {
-        setProjects(newOrder); // সাথে সাথে UI আপডেট
+        setProjects(newOrder);
         try {
             await fetch("/api/projects/reorder", {
                 method: "PUT",
@@ -105,7 +105,7 @@ export default function ProjectManagement() {
 
             <div className="bg-[#111111] rounded-[30px] border border-white/5 overflow-hidden shadow-2xl">
                 <div className="w-full text-left border-collapse">
-                    {/* টেবিল হেডার */}
+                    {/* Table Header */}
                     <div className="grid grid-cols-12 bg-white/5 text-gray-400 uppercase text-[10px] tracking-[0.2em] px-8 py-6 font-bold">
                         <div className="col-span-1">Move</div>
                         <div className="col-span-5">Project Title</div>
@@ -118,7 +118,6 @@ export default function ProjectManagement() {
                     ) : projects.length === 0 ? (
                         <div className="p-20 text-center text-gray-500">No projects found.</div>
                     ) : (
-                        // ড্র্যাগ অ্যান্ড ড্রপ লিস্ট
                         <Reorder.Group axis="y" values={projects} onReorder={handleReorder} className="divide-y divide-white/5">
                             {projects.map((project) => (
                                 <Reorder.Item
