@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion, Reorder } from "framer-motion";
 import Swal from "sweetalert2";
+import Button from "@/components/shared/Button";
 
 interface Project {
     _id: string;
@@ -89,17 +90,16 @@ export default function ProjectManagement() {
             <div className="flex justify-between items-center mb-10">
                 <div>
                     <h2 className="text-3xl font-black uppercase italic tracking-tighter">
-                        Manage <span className="text-red-600">Projects</span>
+                        Manage <span className="text-red-700">Projects</span>
                     </h2>
                     <p className="text-gray-500 text-xs font-bold uppercase tracking-widest mt-1">
                         Total {projects.length} works in portfolio
                     </p>
                 </div>
-                <Link
-                    href="/dashboard/projects/add"
-                    className="bg-red-600 text-white px-6 py-3 rounded-xl font-black uppercase text-xs tracking-widest hover:bg-red-700 transition-all shadow-[0_10px_20px_-5px_rgba(220,38,38,0.4)]"
-                >
-                    + Add New Project
+                <Link href="/dashboard/projects/add">
+                    <Button>
+                        + Add New Project
+                    </Button>
                 </Link>
             </div>
 

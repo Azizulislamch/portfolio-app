@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Swal from "sweetalert2";
+import Button from "@/components/shared/Button";
 
 interface Blog {
     _id: string;
@@ -71,15 +72,14 @@ export default function BlogManagement() {
             <div className="flex justify-between items-center mb-10">
                 <div>
                     <h2 className="text-3xl font-black uppercase italic tracking-tighter">
-                        Manage <span className="text-red-600">Blogs</span>
+                        Manage <span className="text-red-700">Blogs</span>
                     </h2>
                     <p className="text-gray-500 text-xs font-bold uppercase tracking-widest mt-1">Total {blogs.length} articles published</p>
                 </div>
-                <Link
-                    href="/dashboard/blogs/add"
-                    className="bg-red-600 text-white px-6 py-3 rounded-xl font-black uppercase text-xs tracking-widest hover:bg-red-700 transition-all shadow-[0_10px_20px_-5px_rgba(220,38,38,0.4)]"
-                >
-                    + Write New Blog
+                <Link href="/dashboard/blogs/add">
+                    <Button>
+                        + Write New Blog
+                    </Button>
                 </Link>
             </div>
 

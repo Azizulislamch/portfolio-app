@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { FaGithub, FaLinkedinIn, FaFacebookF, FaInstagram } from "react-icons/fa";
 
 export default function Footer() {
@@ -16,9 +17,11 @@ export default function Footer() {
         <footer className="w-full bg-black text-white pt-15 pb-10 relative overflow-hidden rounded-t-[50px]">
             <div className="max-w-7xl mx-auto px-5">
 
-                <div className="flex flex-col md:flex-row justify-between items-center mb-8">
-                    <div className="text-3xl text-gray-400 font-black tracking-tighter italic uppercase">
-                        AZIZUL<span className="text-red-700"> ISLAM</span>
+                <div className="mb-8">
+                    <div>
+                        <Link href="/" className="text-3xl text-gray-400 font-black tracking-tighter italic uppercase">
+                            AZIZUL<span className="text-red-700"> ISLAM</span>
+                        </Link>
                     </div>
                 </div>
 
@@ -45,7 +48,7 @@ export default function Footer() {
             </div>
 
             {/* Marquee */}
-            <div className="relative flex overflow-x-hidden pointer-events-none select-none pt-5">
+            <div className="relative flex overflow-x-hidden pointer-events-none select-none pt-4">
                 <div className="animate-marquee whitespace-nowrap flex">
                     <span className="text-[8vw] font-black uppercase leading-none text-white opacity-[0.15] tracking-tighter">
                         Web Developer & Competitive Programmer • Passionate About Clean Code • 

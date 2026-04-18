@@ -43,7 +43,7 @@ const LoginPage = () => {
                     <div className="relative z-10">
                         <header className="text-center mb-10">
                             <h1 className="text-3xl font-black uppercase italic tracking-tighter text-white">
-                                Admin <span className="text-red-600">Login</span>
+                                Admin <span className="text-red-700">Login</span>
                             </h1>
                             <p className="text-gray-500 text-[10px] uppercase tracking-[0.2em] font-bold mt-2">
                                 Secure Access for Azizul Islam
@@ -93,7 +93,7 @@ const LoginPage = () => {
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
                                 type="submit"
-                                className="w-full bg-red-600 hover:bg-red-700 text-white font-black py-4 rounded-2xl shadow-lg shadow-red-600/20 transition-all uppercase tracking-widest italic"
+                                className="w-full bg-red-700 hover:bg-red-800 text-white font-black py-4 rounded-2xl shadow-lg shadow-red-600/20 transition-all uppercase tracking-widest italic"
                             >
                                 Sign In
                             </motion.button>

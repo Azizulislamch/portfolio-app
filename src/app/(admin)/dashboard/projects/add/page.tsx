@@ -54,7 +54,7 @@ export default function AddProject() {
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-4xl mx-auto">
       <div className="mb-10">
         <h2 className="text-4xl font-black uppercase italic tracking-tighter">
-          Add New <span className="text-red-600">Project</span>
+          Add New <span className="text-red-700">Project</span>
         </h2>
         <p className="text-gray-500 text-xs font-bold uppercase tracking-widest mt-2">Showcase your latest masterpiece</p>
       </div>
@@ -112,7 +112,7 @@ export default function AddProject() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="space-y-3">
-            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 ml-1">Live Demo URL</label>
+            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 ml-1">Live Link URL</label>
             <input
               type="url"
               placeholder="https://..."
@@ -137,7 +137,7 @@ export default function AddProject() {
         <button
           disabled={loading}
           type="submit"
-          className="w-full bg-red-600 hover:bg-red-700 text-white font-black py-5 rounded-2xl transition-all uppercase tracking-[0.3em] text-xs shadow-[0_15px_30px_-10px_rgba(220,38,38,0.5)] disabled:opacity-50"
+          className="w-full bg-red-700 hover:bg-red-800 text-white font-black py-5 rounded-2xl transition-all uppercase tracking-[0.3em] text-xs shadow-[0_15px_30px_-10px_rgba(220,38,38,0.5)] disabled:opacity-50 cursor-pointer"
         >
           {loading ? "Uploading..." : "Publish Project"}
         </button>

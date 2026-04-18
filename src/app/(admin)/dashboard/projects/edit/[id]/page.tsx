@@ -96,7 +96,7 @@ export default function EditProject() {
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-4xl mx-auto py-10">
       <div className="mb-10">
         <h2 className="text-4xl font-black uppercase italic tracking-tighter">
-          Edit <span className="text-red-600">Project</span>
+          Edit <span className="text-red-700">Project</span>
         </h2>
       </div>
 

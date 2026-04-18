@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
 
 export default function AddBlog() {
   const router = useRouter();
@@ -25,26 +26,33 @@ export default function AddBlog() {
       });
 
       if (res.ok) {
-        alert("Blog published successfully!");
+        Swal.fire({
+          title: "Success!",
+          text: "Blog published successfully!",
+          icon: "success",
+          background: "#111111",
+          color: "#ffffff",
+          confirmButtonColor: "#dc2626",
+        });
         router.push("/dashboard/blogs");
         router.refresh();
       }
     } catch (error) {
-      console.error("Submission failed", error);
+      Swal.fire("Error", "Something went wrong", "error");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }} 
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       className="max-w-4xl mx-auto"
     >
       <div className="mb-10">
         <h2 className="text-4xl font-black uppercase italic tracking-tighter">
-          Write New <span className="text-red-600">Article</span>
+          Write New <span className="text-red-700">Article</span>
         </h2>
         <p className="text-gray-500 text-xs font-bold uppercase tracking-widest mt-2">Share your thoughts with the world</p>
       </div>
@@ -95,7 +103,7 @@ export default function AddBlog() {
         <button
           disabled={loading}
           type="submit"
-          className="w-full bg-red-600 hover:bg-red-700 text-white font-black py-5 rounded-2xl transition-all uppercase tracking-[0.3em] text-xs shadow-[0_15px_30px_-10px_rgba(220,38,38,0.5)] disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-red-700 hover:bg-red-800 text-white font-black py-5 rounded-2xl transition-all uppercase tracking-[0.3em] text-xs shadow-[0_15px_30px_-10px_rgba(220,38,38,0.5)] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
         >
           {loading ? "Publishing..." : "Publish Article"}
         </button>
