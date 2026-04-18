@@ -6,6 +6,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Button from "../shared/Button";
 import Link from "next/link";
+import ParticlesBG from "../shared/ParticlesBG";
 
 export default function Hero() {
     const [active, setActive] = useState<"consult" | "freelance">("consult");
@@ -15,6 +16,10 @@ export default function Hero() {
 
             {/* Background Gradient */}
             <div className="absolute inset-0 bg-linear-to-r from-black via-[#1a0000] to-black opacity-90" />
+
+            <div className="absolute inset-0 z-0">
+                <ParticlesBG />
+            </div>
 
             <div className="container max-w-7xl mx-auto px-6 md:px-8 flex flex-col-reverse md:flex-row items-center justify-between relative z-10 gap-10">
 
