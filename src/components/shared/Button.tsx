@@ -11,6 +11,7 @@ interface ButtonProps {
   variant?: "primary" | "iconOnly";
   showShine?: boolean;
   type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({ 
@@ -20,7 +21,8 @@ const Button: React.FC<ButtonProps> = ({
   className = "", 
   variant = "primary", 
   showShine = true,
-  type = "button"
+  type = "button",
+  disabled = false
 }) => {
   
   const baseStyles = "relative group flex items-center justify-center gap-2 font-bold transition-all active:scale-95 overflow-hidden shadow-lg";
@@ -36,6 +38,7 @@ const Button: React.FC<ButtonProps> = ({
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       onClick={onClick}
+      disabled={disabled}
       className={`${baseStyles} ${variants[variant]} ${className} cursor-pointer`}
     >
       {/* Shine Effect Layer */}
