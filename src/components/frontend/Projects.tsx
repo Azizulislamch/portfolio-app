@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Button from "../shared/Button";
+import Link from "next/link";
 
 interface Project {
   _id: string;
@@ -14,7 +15,8 @@ interface Project {
   liveLink: string;
 }
 
-const Projects = ({ projects }: { projects: Project[] }) => {
+// showSeeMore
+const Projects = ({ projects, showSeeMore = false }: { projects: Project[], showSeeMore?: boolean }) => {
   return (
     <section id="projects" className="bg-[#0d0d0d] py-24 px-6 md:px-12 lg:px-24 text-white">
       <div className="max-w-7xl mx-auto">
@@ -82,6 +84,18 @@ const Projects = ({ projects }: { projects: Project[] }) => {
             </motion.div>
           ))}
         </div>
+
+        {/* See All Projects Button */}
+        {showSeeMore && projects.length >= 3 && (
+          <div className="mt-20 text-center">
+            <Link href="/projects" className="inline-block group">
+              <Button className="px-10 py-4 flex items-center gap-2">
+                See All Projects
+                <i className="fa-solid fa-arrow-right-long text-lg group-hover:translate-x-1 transition-transform"></i>
+              </Button>
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

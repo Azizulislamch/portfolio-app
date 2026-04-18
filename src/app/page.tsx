@@ -27,6 +27,9 @@ export default async function Home() {
   const projects = JSON.parse(JSON.stringify(projectsData));
   const blogs = JSON.parse(JSON.stringify(blogsData));
 
+  const limitedProjects = projects.slice(0, 3);
+  const limitedBlogs = blogs.slice(0, 3);
+
   return (
     <main className="bg-primary min-h-screen flex flex-col w-full">
       <Navbar />
@@ -35,8 +38,8 @@ export default async function Home() {
       <Resume />
       <Skills />
       <Services />
-      <Projects projects={projects} />
-      <Blogs blogs={blogs} />
+      <Projects projects={limitedProjects} showSeeMore={true} /> 
+      <Blogs blogs={limitedBlogs} showSeeMore={true} />
       <Contact />
       <Footer />
     </main>

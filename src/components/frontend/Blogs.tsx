@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "../shared/Button";
+import Link from "next/link";
 
 interface Blog {
     _id: string;
@@ -12,7 +13,7 @@ interface Blog {
     createdAt: string;
 }
 
-const Blogs = ({ blogs }: { blogs: Blog[] }) => {
+const Blogs = ({ blogs, showSeeMore = false }: { blogs: Blog[], showSeeMore?: boolean }) => {
     // State for Pop Up
     const [selectedBlog, setSelectedBlog] = useState<Blog | null>(null);
 
@@ -79,6 +80,17 @@ const Blogs = ({ blogs }: { blogs: Blog[] }) => {
                         </motion.div>
                     ))}
                 </div>
+
+                {showSeeMore && blogs.length >= 3 && (
+                    <div className="mt-20 text-center">
+                        <Link href="/blogs" className="inline-block group">
+                            <Button className="px-10 py-4 flex items-center gap-2">
+                                View All Articles
+                                <i className="fa-solid fa-arrow-right-long text-lg group-hover:translate-x-1 transition-transform"></i>
+                            </Button>
+                        </Link>
+                    </div>
+                )}
             </div>
 
             {/* --- POPUP / MODAL SYSTEM --- */}
@@ -86,7 +98,7 @@ const Blogs = ({ blogs }: { blogs: Blog[] }) => {
                 {selectedBlog && (
                     <div className="fixed inset-0 z-1000 flex items-center justify-center p-4 md:p-10">
                         {/* Background Overlay */}
-                        <motion.div 
+                        <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
@@ -95,14 +107,14 @@ const Blogs = ({ blogs }: { blogs: Blog[] }) => {
                         />
 
                         {/* Modal Content */}
-                        <motion.div 
+                        <motion.div
                             initial={{ opacity: 0, scale: 0.9, y: 20 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.9, y: 20 }}
                             className="relative bg-[#1a1a1a] w-full max-w-4xl max-h-[85vh] overflow-y-auto rounded-[30px] border border-white/10 shadow-2xl custom-scrollbar"
                         >
                             {/* Close Button (Right Top) */}
-                            <button 
+                            <button
                                 onClick={() => setSelectedBlog(null)}
                                 className="absolute top-6 right-6 w-10 h-10 bg-white/5 hover:bg-red-500 text-white rounded-full flex items-center justify-center transition-all z-10"
                             >
@@ -119,7 +131,7 @@ const Blogs = ({ blogs }: { blogs: Blog[] }) => {
                                         {new Date(selectedBlog.createdAt).toLocaleDateString()}
                                     </span>
                                 </div>
-                                
+
                                 <h2 className="text-3xl md:text-5xl font-black mb-8 leading-tight">
                                     {selectedBlog.title}
                                 </h2>
