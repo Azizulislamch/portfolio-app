@@ -16,8 +16,11 @@ const ChatBot = () => {
     ]);
     const chatEndRef = useRef<HTMLDivElement>(null);
 
+    // অটোমেটিক নিচে স্ক্রল করার জন্য
     useEffect(() => {
-        chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+        if (chatEndRef.current) {
+            chatEndRef.current.scrollIntoView({ behavior: "smooth" });
+        }
     }, [messages]);
 
     const handleSendMessage = async () => {
@@ -35,35 +38,18 @@ const ChatBot = () => {
                 body: JSON.stringify({ message: currentInput }),
             });
 
-            // ✅ Fix 1: check HTTP status before parsing
             if (!res.ok) {
                 const errorData = await res.json().catch(() => ({}));
-                const status = res.status;
-
-                let errorMsg = "কানেকশনে সমস্যা হচ্ছে। আবার চেষ্টা করুন।";
-                if (status === 429) {
-                    errorMsg = "Too many requests! কিছুক্ষণ পর আবার চেষ্টা করুন। ⏳";
-                } else if (status === 500) {
-                    errorMsg = errorData.text || "Server error হয়েছে। একটু পর চেষ্টা করুন।";
-                }
-
-                setMessages(prev => [...prev, { role: "ai", text: errorMsg }]);
+                setMessages(prev => [...prev, { role: "ai", text: errorData.text || "সার্ভার এরর হয়েছে।" }]);
                 return;
             }
 
             const data = await res.json();
-
             if (data.text) {
                 setMessages(prev => [...prev, { role: "ai", text: data.text }]);
-            } else {
-                throw new Error("No response text");
             }
         } catch (error) {
-            // ✅ Fix 2: only runs on network failures now, not API errors
-            setMessages(prev => [
-                ...prev,
-                { role: "ai", text: "নেটওয়ার্ক সমস্যা হচ্ছে। ইন্টারনেট চেক করুন। 🌐" },
-            ]);
+            setMessages(prev => [...prev, { role: "ai", text: "নেটওয়ার্ক সমস্যা হচ্ছে। 🌐" }]);
         } finally {
             setLoading(false);
         }
@@ -77,32 +63,27 @@ const ChatBot = () => {
                         initial={{ opacity: 0, scale: 0.8, y: 50 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.8, y: 50 }}
-                        className="bg-[#1a1a1a] w-80 md:w-96 h-500px rounded-3xl border border-white/10 shadow-2xl overflow-hidden flex flex-col mb-4"
+                        className="bg-[#1a1a1a] w-80 md:w-96 h-125 rounded-3xl border border-white/10 shadow-2xl overflow-hidden flex flex-col mb-4"
                     >
                         {/* Header */}
-                        <div className="bg-red-700 p-4 flex justify-between items-center text-white">
+                        <div className="bg-red-700 p-4 flex justify-between items-center text-white shrink-0">
                             <div className="flex items-center gap-2">
                                 <div className={`w-2.5 h-2.5 rounded-full ${loading ? "bg-yellow-400 animate-bounce" : "bg-green-400 animate-pulse"}`} />
                                 <span className="font-bold text-sm uppercase tracking-wider">Azizul AI Assistant</span>
                             </div>
-                            <button
-                                onClick={() => setIsOpen(false)}
-                                className="hover:rotate-90 transition-transform duration-300"
-                                aria-label="Close chat"
-                            >
+                            <button onClick={() => setIsOpen(false)} className="hover:rotate-90 transition-transform duration-300">
                                 <i className="fa-solid fa-xmark" />
                             </button>
                         </div>
 
-                        {/* Messages */}
-                        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#0d0d0d]">
+                        {/* Messages Container - scrollbar hide */}
+                        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#0d0d0d] scrollbar-hide">
                             {messages.map((msg, i) => (
                                 <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
-                                    <div className={`max-w-[85%] p-3 rounded-2xl text-[15px] ${
-                                        msg.role === "user"
-                                            ? "bg-red-700 text-white rounded-tr-none"
-                                            : "bg-[#1a1a1a] text-gray-300 border border-white/5 rounded-tl-none"
-                                    }`}>
+                                    <div className={`max-w-[85%] p-3 rounded-2xl text-[15px] whitespace-pre-wrap ${msg.role === "user"
+                                        ? "bg-red-700 text-white rounded-tr-none"
+                                        : "bg-[#1a1a1a] text-gray-300 border border-white/5 rounded-tl-none"
+                                        }`}>
                                         {msg.text}
                                     </div>
                                 </div>
@@ -118,8 +99,8 @@ const ChatBot = () => {
                             <div ref={chatEndRef} />
                         </div>
 
-                        {/* Input */}
-                        <div className="p-4 bg-[#1a1a1a] border-t border-white/5 flex gap-2">
+                        {/* Input Area */}
+                        <div className="p-4 bg-[#1a1a1a] border-t border-white/5 flex gap-2 shrink-0">
                             <input
                                 type="text"
                                 value={input}
@@ -127,13 +108,12 @@ const ChatBot = () => {
                                 onChange={e => setInput(e.target.value)}
                                 onKeyDown={e => e.key === "Enter" && handleSendMessage()}
                                 placeholder="Ask me anything..."
-                                className="flex-1 bg-[#0d0d0d] text-white text-sm rounded-xl px-4 py-3 outline-none border border-white/10 focus:border-red-600 transition-all disabled:opacity-50"
+                                className="flex-1 bg-[#0d0d0d] text-white text-sm rounded-xl px-4 py-3 outline-none border border-white/10 focus:border-red-600 transition-all"
                             />
-                            {/* ✅ Fix 3: use native button if Button component causes issues */}
                             <Button
                                 onClick={handleSendMessage}
                                 disabled={loading}
-                                className="p-0 w-12 h-12 rounded-xl flex items-center justify-center disabled:opacity-50"
+                                className="p-0 w-12 h-12 rounded-xl flex items-center justify-center"
                             >
                                 <i className={`fa-solid ${loading ? "fa-spinner animate-spin" : "fa-paper-plane"} text-xs text-white`} />
                             </Button>
@@ -142,15 +122,13 @@ const ChatBot = () => {
                 )}
             </AnimatePresence>
 
-            {/* Floating Toggle Button */}
+            {/* Toggle Button */}
             <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setIsOpen(!isOpen)}
-                aria-label={isOpen ? "Close chat" : "Open chat"}
-                className={`w-16 h-16 rounded-full flex items-center justify-center text-white shadow-2xl border-4 border-white/20 transition-all ${
-                    isOpen ? "bg-[#1a1a1a]" : "bg-red-700"
-                }`}
+                className={`w-16 h-16 rounded-full flex items-center justify-center text-white shadow-2xl border-4 border-white/20 transition-all ${isOpen ? "bg-[#1a1a1a]" : "bg-red-700"
+                    }`}
             >
                 <i className={`fa-solid ${isOpen ? "fa-chevron-down" : "fa-comment-dots"} text-2xl`} />
             </motion.button>
