@@ -11,7 +11,7 @@ const ChatBot = () => {
     const [messages, setMessages] = useState<{ role: string; text: string }[]>([
         {
             role: "ai",
-            text: "Hello! I'm Azizul's AI. MERN Stack বা Next.js নিয়ে কোনো প্রশ্ন থাকলে নির্দ্বিধায় জিজ্ঞাসা করতে পারেন।",
+            text: "Hello! I'm Azizul's AI Assistant. Feel free to ask me anything about his work, projects, or how to hire him! 👋",
         },
     ]);
     const chatEndRef = useRef<HTMLDivElement>(null);
