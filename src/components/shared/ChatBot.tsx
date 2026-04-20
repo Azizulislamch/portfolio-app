@@ -130,7 +130,7 @@ const ChatBot = () => {
                 className={`w-16 h-16 rounded-full flex items-center justify-center text-white shadow-2xl border-4 border-white/20 transition-all ${isOpen ? "bg-[#1a1a1a]" : "bg-red-700"
                     }`}
             >
-                <i className={`fa-solid ${isOpen ? "fa-chevron-down" : "fa-comment-dots"} text-2xl`} />
+                <i className={`fa-solid ${isOpen ? "fa-chevron-down" : "fa-robot"} text-2xl`} />
             </motion.button>
         </div>
     );
