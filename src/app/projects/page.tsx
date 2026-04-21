@@ -15,7 +15,7 @@ export default async function AllProjectsPage() {
   return (
     <main className="bg-[#0d0d0d] min-h-screen">
       <Navbar />
-      <div className="pt-20">
+      <div className="pt-32"> 
         <Projects projects={projects} showSeeMore={false} />
       </div>
       <Footer />

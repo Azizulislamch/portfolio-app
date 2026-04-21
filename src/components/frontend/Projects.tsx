@@ -42,6 +42,7 @@ const Projects = ({ projects, showSeeMore = false }: { projects: Project[], show
                     src={project.image}
                     alt={project.title}
                     fill
+                    loading="eager"
                     sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-contain object-center transition-transform duration-700 group-hover:scale-105"
                   />

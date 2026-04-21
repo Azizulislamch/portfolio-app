@@ -25,7 +25,7 @@ export default function Footer() {
                     </div>
                 </div>
 
-                
+
                 <div className="flex flex-col md:flex-row justify-between items-center py-5 border-t border-white/10 gap-6">
                     <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">
                         Copyright © {currentYear} Azizul Islam. All Rights Reserved.
@@ -51,10 +51,10 @@ export default function Footer() {
             <div className="relative flex overflow-x-hidden pointer-events-none select-none pt-4">
                 <div className="animate-marquee whitespace-nowrap flex">
                     <span className="text-[8vw] font-black uppercase leading-none text-white opacity-[0.15] tracking-tighter">
-                        Web Developer & Competitive Programmer • Passionate About Clean Code • 
+                        Web Developer & Competitive Programmer • Passionate About Clean Code •
                     </span>
                     <span className="text-[8vw] font-black uppercase leading-none text-white opacity-[0.15] tracking-tighter">
-                        Web Developer & Competitive Programmer • Passionate About Clean Code • 
+                        Web Developer & Competitive Programmer • Passionate About Clean Code •
                     </span>
                 </div>
             </div>
