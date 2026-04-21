@@ -13,8 +13,8 @@ const nextConfig = {
         hostname: 'user-attachments.githubusercontent.com',
       },
       {
-        protocol: 'https',
-        hostname: 'i.ibb.co',
+        protocol: "https",
+        hostname: "res.cloudinary.com",
       },
     ],
   },
