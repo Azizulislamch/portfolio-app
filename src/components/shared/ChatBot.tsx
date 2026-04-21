@@ -16,7 +16,7 @@ const ChatBot = () => {
     ]);
     const chatEndRef = useRef<HTMLDivElement>(null);
 
-    // অটোমেটিক নিচে স্ক্রল করার জন্য
+    // For automatic scroll to bottom when new message arrives
     useEffect(() => {
         if (chatEndRef.current) {
             chatEndRef.current.scrollIntoView({ behavior: "smooth" });
@@ -40,7 +40,7 @@ const ChatBot = () => {
 
             if (!res.ok) {
                 const errorData = await res.json().catch(() => ({}));
-                setMessages(prev => [...prev, { role: "ai", text: errorData.text || "সার্ভার এরর হয়েছে।" }]);
+                setMessages(prev => [...prev, { role: "ai", text: errorData.text || "Server error occurred. 🛠️" }]);
                 return;
             }
 
@@ -49,21 +49,21 @@ const ChatBot = () => {
                 setMessages(prev => [...prev, { role: "ai", text: data.text }]);
             }
         } catch (error) {
-            setMessages(prev => [...prev, { role: "ai", text: "নেটওয়ার্ক সমস্যা হচ্ছে। 🌐" }]);
+            setMessages(prev => [...prev, { role: "ai", text: "Network issue occurred. 🌐" }]);
         } finally {
             setLoading(false);
         }
     };
 
     return (
-        <div className="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-9999 font-sans">
+        <div className="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[9999] font-sans">
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
                         initial={{ opacity: 0, scale: 0.8, y: 50 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.8, y: 50 }}
-                        className="bg-[#1a1a1a] w-80 md:w-96 h-125 rounded-3xl border border-white/10 shadow-2xl overflow-hidden flex flex-col mb-4"
+                        className="bg-[#1a1a1a] w-80 md:w-96 h-[500px] rounded-3xl border border-white/10 shadow-2xl overflow-hidden flex flex-col mb-4"
                     >
                         {/* Header */}
                         <div className="bg-red-700 p-4 flex justify-between items-center text-white shrink-0">
@@ -110,13 +110,15 @@ const ChatBot = () => {
                                 placeholder="Ask me anything..."
                                 className="flex-1 bg-[#0d0d0d] text-white text-sm rounded-xl px-4 py-3 outline-none border border-white/10 focus:border-red-600 transition-all"
                             />
-                            <Button
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
                                 onClick={handleSendMessage}
                                 disabled={loading}
-                                className="p-0 w-12 h-12 rounded-xl flex items-center justify-center"
+                                className="w-12 h-12 bg-red-700 hover:bg-red-600 disabled:opacity-50 text-white rounded-xl flex items-center justify-center shadow-lg transition-colors shrink-0"
                             >
-                                <i className={`fa-solid ${loading ? "fa-spinner animate-spin" : "fa-paper-plane"} text-xs text-white`} />
-                            </Button>
+                                <i className={`fa-solid ${loading ? "fa-spinner animate-spin" : "fa-paper-plane"} text-sm`} />
+                            </motion.button>
                         </div>
                     </motion.div>
                 )}
