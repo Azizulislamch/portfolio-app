@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import Button from "./Button";
 import { motion, AnimatePresence } from "framer-motion";
 
 const ChatBot = () => {
@@ -56,14 +55,14 @@ const ChatBot = () => {
     };
 
     return (
-        <div className="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[9999] font-sans">
+        <div className="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-9999 font-sans">
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
                         initial={{ opacity: 0, scale: 0.8, y: 50 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.8, y: 50 }}
-                        className="bg-[#1a1a1a] w-80 md:w-96 h-[500px] rounded-3xl border border-white/10 shadow-2xl overflow-hidden flex flex-col mb-4"
+                        className="bg-[#1a1a1a] w-80 md:w-96 h-125 rounded-3xl border border-white/10 shadow-2xl overflow-hidden flex flex-col mb-4"
                     >
                         {/* Header */}
                         <div className="bg-red-700 p-4 flex justify-between items-center text-white shrink-0">
