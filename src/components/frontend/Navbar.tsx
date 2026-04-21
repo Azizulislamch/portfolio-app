@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import Button from '../shared/Button';
 
@@ -8,51 +9,78 @@ const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [activeItem, setActiveItem] = useState('Home');
+    const pathname = usePathname();
 
     const isClickingRef = useRef(false);
 
     const navLinks = [
-        { label: "Home", to: "#home" },
-        { label: "About", to: "#about" },
-        { label: "Skills", to: "#skills" },
-        { label: "Services", to: "#services" },
-        { label: "Projects", to: "#projects" },
-        { label: "Blog", to: "#blogs" },
-        { label: "Contact", to: "#contact" },
+        { label: "Home", to: "/" },
+        { label: "About", to: "/#about" },
+        { label: "Skills", to: "/#skills" },
+        { label: "Services", to: "/#services" },
+        { label: "Projects", to: "/#projects" },
+        { label: "Blog", to: "/#blogs" },
+        { label: "Contact", to: "/#contact" },
     ];
+
+    useEffect(() => {
+        if (pathname === '/projects') {
+            setActiveItem('Projects');
+        } else if (pathname === '/blogs') {
+            setActiveItem('Blog');
+        } else if (pathname === '/' && window.scrollY < 20) {
+            setActiveItem('Home');
+        }
+    }, [pathname]);
 
     // Go top of the page and URL reset function
     const scrollToTop = (e: React.MouseEvent) => {
-        e.preventDefault();
-        isClickingRef.current = true;
+        if (pathname === '/') {
+            e.preventDefault();
+            isClickingRef.current = true;
 
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
 
-        setActiveItem('Home');
-        setMenuOpen(false);
+            setActiveItem('Home');
+            setMenuOpen(false);
 
-        window.history.pushState(null, '', '/#home');
+            window.history.pushState(null, '', '/');
 
-        setTimeout(() => {
-            isClickingRef.current = false;
-        }, 1000);
+            setTimeout(() => {
+                isClickingRef.current = false;
+            }, 1000);
+        } else {
+            setMenuOpen(false);
+        }
     };
 
     // Handler for LinkClick
     const handleLinkClick = (e: React.MouseEvent, label: string, to: string) => {
-        if (to === "#home") {
+        if (pathname !== '/') {
+            setMenuOpen(false);
+            return; // Let Next.js Link handle the navigation to the home page hash
+        }
+
+        if (to === "/") {
             scrollToTop(e);
             return;
         }
 
+        e.preventDefault();
         isClickingRef.current = true;
         setActiveItem(label);
         setMenuOpen(false);
 
-        window.history.pushState(null, '', `/${to}`);
+        const sectionId = to.replace('/#', '');
+        const section = document.getElementById(sectionId);
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        window.history.pushState(null, '', `#${sectionId}`);
 
         setTimeout(() => {
             isClickingRef.current = false;
@@ -64,9 +92,10 @@ const Navbar = () => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 20);
 
+            if (pathname !== '/') return;
             if (isClickingRef.current) return;
 
-            const sectionIds = navLinks.map(link => link.to.replace('#', ''));
+            const sectionIds = navLinks.filter(link => link.to.startsWith('/#')).map(link => link.to.replace('/#', ''));
 
             for (const id of sectionIds.reverse()) {
                 const section = document.getElementById(id);
@@ -74,11 +103,11 @@ const Navbar = () => {
                     const rect = section.getBoundingClientRect();
 
                     if (rect.top <= 150 && rect.bottom >= 150) {
-                        const currentLink = navLinks.find(link => link.to === `#${id}`);
+                        const currentLink = navLinks.find(link => link.to === `/#${id}`);
 
                         if (currentLink && activeItem !== currentLink.label) {
                             setActiveItem(currentLink.label);
-                            window.history.pushState(null, '', `/${currentLink.to}`);
+                            window.history.pushState(null, '', `/#${id}`);
                         }
                         break;
                     }
