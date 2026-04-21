@@ -4,6 +4,9 @@ import Footer from "@/components/frontend/Footer";
 import { connectDB } from "@/lib/db";
 import { Project } from "@/models/Project";
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function AllProjectsPage() {
   await connectDB();
   const projectsData = await Project.find().sort({ order: 1 }).lean();

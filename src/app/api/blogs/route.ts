@@ -2,6 +2,8 @@ import { connectDB } from "@/lib/db";
 import { Blog } from "@/models/Blog";
 import { NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic';
+
 // GET
 export async function GET() {
   try {
