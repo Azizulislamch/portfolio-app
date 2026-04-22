@@ -11,13 +11,14 @@ A modern, responsive, and high-performance portfolio website built with **Next.j
 
 ## ✨ Features
 
-- **Modern UI/UX** — Clean, dark-themed design with smooth Framer Motion animations
-- **🤖 AI Chatbot Assistant** — Powered by Groq (LLaMA 3.1) with real-time MongoDB context; answers questions about projects, skills, and hiring in English, Bangla, or Banglish
-- **Project Showcase** — Dynamic project management with tech stack display and live/GitHub links
-- **Blog System** — Category-based blog with full CRUD support
-- **Admin Dashboard** — Secure area to Create, Update, and Delete projects and blogs
-- **Responsive Design** — Fully optimized for mobile, tablet, and desktop (Mobile First)
-- **Data Persistence** — MongoDB for robust data handling via Mongoose ODM
+- **Modern UI/UX** — Clean, dark-themed design with smooth Framer Motion animations.
+- **🤖 AI Chatbot Assistant** — Powered by Groq (LLaMA 3.1) with real-time MongoDB context; answers questions about projects, skills, and hiring in English, Bangla, or Banglish.
+- **Dynamic Project Showcase** — Dynamic project management with tech stack display and live/GitHub links.
+- **Cloudinary Integration** — Seamless image management allowing direct device uploads via a custom dashboard for optimized cloud storage.
+- **Comprehensive Blog System** — Category-based blogging platform with full CRUD (Create, Read, Update, Delete) functionality.
+- **Admin Dashboard** — A centralized, protected area to manage projects and blogs without touching the code.
+- **Responsive Design** — Fully optimized for mobile, tablet, and desktop (Mobile First).
+- **Robust Data Persistence** — MongoDB with Mongoose ODM for reliable data handling and fast query execution.
 
 ---
 
