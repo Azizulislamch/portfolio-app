@@ -48,7 +48,7 @@ export default function Footer() {
             </div>
 
             {/* Marquee */}
-            <div className="relative flex overflow-x-hidden pointer-events-none select-none pt-4">
+            <div className="relative flex pointer-events-none select-none pt-4">
                 <div className="animate-marquee whitespace-nowrap flex">
                     <span className="text-[8vw] font-black uppercase leading-none text-white opacity-[0.15] tracking-tighter">
                         Web Developer & Competitive Programmer • Passionate About Clean Code •
